@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from Models.models import * 
 
 def index(request):
@@ -19,6 +19,11 @@ def articles(request):
         'announcements' : q
     }
     return render(request, 'UserInterface/articles.html', context = context)
+
+def view_article(request, id):
+    article = get_object_or_404(Announcements, id = id)
+    
+    return render(request, 'UserInterface/view_article.html', context = {'article': article} )
 
 
 def about_us(request):
@@ -41,3 +46,9 @@ def about_us(request):
         'role' : abc,  
     }
     return render(request, 'UserInterface/about_us.html', context = items)
+
+
+def contact_us(request):
+    return render(request, 'UserInterface/contact_us.html')
+
+

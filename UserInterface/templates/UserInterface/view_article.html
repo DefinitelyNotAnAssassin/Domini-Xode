@@ -1,0 +1,36 @@
+{% extends 'UserInterface/base.html' %}
+
+
+
+{% block title %} {{article.title}} {% endblock title %} 
+
+
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col text-center font-monospce">
+            <h3>{{article.title}}   </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-start">
+            {{article.author}}
+        </div>
+        <div class="col text-end">
+            {{article.date}}
+        </div>
+    </div>
+
+
+    <div class="row mt-5">
+        <div class="col font-monospace">
+            {{article.content}}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

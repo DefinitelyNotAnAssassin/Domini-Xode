@@ -8,8 +8,8 @@
 {% block content %} 
 
 
-    {% for i in announcements %}
-
+ 
+ 
     <table class="table mt-5 mt-5 font-monospace">
         <thead>
             <tr >
@@ -25,7 +25,7 @@
             <tbody>
                 {% for i in announcements %}
                     <tr>
-                        <td>{{i.title}}</td>
+                        <td id = {{i.id}} ondblclick="clicked(this)">{{i.title}}</td>
                         <td>{{i.author}}</td>
 
                     </tr>
@@ -38,7 +38,23 @@
 
     </table>
     
-    {% endfor %}
+
 
 
 {% endblock %}
+
+
+{% block script %} 
+
+<script>
+    clicked = (target) => {
+     
+        location = `articles/view_article/${target.id}`
+        
+        
+    }
+
+
+</script>
+
+{% endblock script %}
