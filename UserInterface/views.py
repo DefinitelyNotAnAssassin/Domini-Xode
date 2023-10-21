@@ -11,7 +11,7 @@ def index(request):
 def articles(request):
 
 
-    q = Announcements.objects.all()
+    q = Announcements.objects.all().order_by('-date')
 
     context = {
 

@@ -32,7 +32,7 @@ class Account(AbstractUser):
 class Announcements(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Account, on_delete=models.CASCADE)
-    content = models.CharField(max_length=512)
+    content = models.CharField(max_length=10000)
     date = models.DateTimeField(default = timezone.now)
 
     def __str__(self):

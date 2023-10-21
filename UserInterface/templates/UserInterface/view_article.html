@@ -1,4 +1,4 @@
-{% extends 'UserInterface/base.html' %}
+{% extends 'UserInterface/base2.html' %}
 
 
 
@@ -8,29 +8,88 @@
 
 {% block content %}
 
-<div class="container mt-5">
-
-    <div class="row">
-        <div class="col text-center font-monospce">
-            <h3>{{article.title}}   </h3>
-        </div>
+<!-- Jumbotron -->
+    <div id="intro" class="p-5 text-center bg-light">
+      <h1 class="mb-0 h4">{{article.title}}</h1>
     </div>
-    <div class="row">
-        <div class="col text-start">
-            {{article.author}}
-        </div>
-        <div class="col text-end">
-            {{article.date}}
-        </div>
-    </div>
+    <!-- Jumbotron -->
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="mt-4 mb-5">
+    <div class="container">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-auto mb-5">
+          <!--Section: Post data-mdb-->
+          <section class="border-bottom mb-4">
+            <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/363959470_268002949410153_908093610336867492_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdYJSz7SmwqFstpjOgmmc1oqOXGFHttKmio5cYUe20qShvZz0vxfCrTMGM82k_O-HvuD8M6NmJZ8TISy_e_mtL&_nc_ohc=w0mXcFtryrQAX-Pn4Y2&_nc_ht=scontent.fmnl30-1.fna&oh=00_AfBRqbaGhoEMITXawykggrYr0lLt75w-sdCmqJwgOMB9lw&oe=6539C071"
+              class="img-fluid shadow-2-strong rounded mb-4" alt="" />
+
+            <div class="row align-items-center mb-4">
+              <div class="col-lg-6 text-center text-lg-start mb-3 m-lg-0">
+                <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/363959470_268002949410153_908093610336867492_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdYJSz7SmwqFstpjOgmmc1oqOXGFHttKmio5cYUe20qShvZz0vxfCrTMGM82k_O-HvuD8M6NmJZ8TISy_e_mtL&_nc_ohc=w0mXcFtryrQAX-Pn4Y2&_nc_ht=scontent.fmnl30-1.fna&oh=00_AfBRqbaGhoEMITXawykggrYr0lLt75w-sdCmqJwgOMB9lw&oe=6539C071" class="rounded shadow-1-strong me-2"
+                  height="35" alt="" loading="lazy" />
+                <span> Published <u>{{article.date}}</u> by</span>
+                <a href="" class="text-dark">{{article.author}}</a>
+              </div>
+
+              <div class="col-lg-6 text-center text-lg-end">
+                <button type="button" class="btn btn-primary px-3 me-1" style="background-color: #3b5998;">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="btn btn-primary px-3 me-1" style="background-color: #55acee;">
+                  <i class="fab fa-twitter"></i>
+                </button>
+            
+             
+              </div>
+            </div>
+          </section>
+          <!--Section: Post data-mdb-->
+
+          <!--Section: Text-->
+          <section>
+
+<p>
+  {{article.content}}
+  
+</p>
+
+            
 
 
-    <div class="row mt-5">
-        <div class="col font-monospace">
-            {{article.content}}
-        </div>
-    </div>
-</div>
+
+          </section>
+          <!--Section: Text-->
+
+        
+
+          <!--Section: Author-->
+          <section class="border-bottom mb-4 pb-4">
+            <div class="row">
+              <div class="col-3">
+                <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/363959470_268002949410153_908093610336867492_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdYJSz7SmwqFstpjOgmmc1oqOXGFHttKmio5cYUe20qShvZz0vxfCrTMGM82k_O-HvuD8M6NmJZ8TISy_e_mtL&_nc_ohc=w0mXcFtryrQAX-Pn4Y2&_nc_ht=scontent.fmnl30-1.fna&oh=00_AfBRqbaGhoEMITXawykggrYr0lLt75w-sdCmqJwgOMB9lw&oe=6539C071"
+                  class="img-fluid shadow-1-strong rounded" alt="" />
+              </div>
+
+              <div class="col-9">
+                <p class="mb-2"><strong>{{article.author}}</strong></p>
+                <a href="" class="text-dark"><i class="fab fa-facebook-f me-1"></i></a>
+                <a href="" class="text-dark"><i class="fab fa-twitter me-1"></i></a>
+                <a href="" class="text-dark"><i class="fab fa-linkedin me-1"></i></a>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio est ab iure
+                  inventore dolorum consectetur? Molestiae aperiam atque quasi consequatur aut?
+                  Repellendus alias dolor ad nam, soluta distinctio quis accusantium!
+                </p>
+              </div>
+            </div>
+          </section>
+          <!--Section: Author-->
+
 
 
 {% endblock content %}

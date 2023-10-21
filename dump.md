@@ -1,3 +1,34 @@
+
+
+    <table class="table mt-5 mt-5 font-monospace">
+        <thead>
+            <tr >
+                <th  >
+                    Title
+                </th>
+                <th>
+                    Author  
+                </th>
+            </tr>
+
+
+            <tbody>
+                {% for i in announcements %}
+                    <tr>
+                        <td id = {{i.id}} ondblclick="clicked(this)">{{i.title}}</td>
+                        <td>{{i.author}}</td>
+
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </thead>
+
+
+
+    </table>
+
+
 <main class="mt-5">
 <div class="container">
   <!--Section: Content-->
