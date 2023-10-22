@@ -28,10 +28,16 @@
       <section class="text-center">
         <h4 class="mb-5"><strong>Latest posts</strong></h4>
         
-        <div class="row">
+     
         
         {% for article in announcements %}
-          <div class="col-lg-4 col-md-12 mb-4">
+        
+        {% if forloop.counter0|divisibleby:2%}
+        
+        
+           <div class="row">
+             
+            <div class="col-lg-4 col-md-12 mb-4">
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/363959470_268002949410153_908093610336867492_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdYJSz7SmwqFstpjOgmmc1oqOXGFHttKmio5cYUe20qShvZz0vxfCrTMGM82k_O-HvuD8M6NmJZ8TISy_e_mtL&_nc_ohc=w0mXcFtryrQAX-Pn4Y2&_nc_ht=scontent.fmnl30-1.fna&oh=00_AfBRqbaGhoEMITXawykggrYr0lLt75w-sdCmqJwgOMB9lw&oe=6539C071" class="img-fluid" />
@@ -47,11 +53,41 @@
                 <a href="/articles/view_article/{{article.id}}" class="btn btn-primary">Read</a>
               </div>
             </div>
-          
+            
+         {% else %}
+            <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/363959470_268002949410153_908093610336867492_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdYJSz7SmwqFstpjOgmmc1oqOXGFHttKmio5cYUe20qShvZz0vxfCrTMGM82k_O-HvuD8M6NmJZ8TISy_e_mtL&_nc_ohc=w0mXcFtryrQAX-Pn4Y2&_nc_ht=scontent.fmnl30-1.fna&oh=00_AfBRqbaGhoEMITXawykggrYr0lLt75w-sdCmqJwgOMB9lw&oe=6539C071" class="img-fluid" />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{article.title}}</h5>
+                <p class="card-text">
+                  {{article.content |truncatewords:16}}
+                </p>
+                <a href="/articles/view_article/{{article.id}}" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+              </div>
+      
+        {% endif %}
+      
+
+
+        
+
+        
+        
+
         
         
         {% endfor %}
         </div>
+        
+
 
 
       
