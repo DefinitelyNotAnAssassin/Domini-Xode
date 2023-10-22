@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser 
 from django.utils import timezone
+from markdownx.models import MarkdownxField
 # Create your models here.
 
 
@@ -32,11 +33,13 @@ class Account(AbstractUser):
 class Announcements(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Account, on_delete=models.CASCADE)
-    content = models.CharField(max_length=10000)
+    content = MarkdownxField(max_length=10000)
     date = models.DateTimeField(default = timezone.now)
+
 
     def __str__(self):
         return f"{self.title} | {self.author}"
+    
 
 
 

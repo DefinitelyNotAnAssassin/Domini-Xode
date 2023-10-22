@@ -1,0 +1,72 @@
+{% extends 'UserInterface/base.html' %}
+
+{% block head %} 
+    <style>
+        .markdownx, .row{
+            display: flex;
+            
+
+        }
+
+
+        .markdownx-editor{
+            flex: 50%;
+            width: 50vw;
+         
+           
+        }
+    
+        .markdownx-preview{
+            padding-left: 5vw;
+            flex: 50%;
+            width: 45vw;
+            border: 1px;
+            border-color: black;
+            
+        }
+
+        .markdownx-editor, .markdownx-preview{
+            height: 50vh;
+        }
+
+    
+    </style>
+{% endblock head %}
+
+{% block title %} Add Article {% endblock title %} 
+
+
+{% block content %} 
+
+
+<form method="POST" action="/add_article">{% csrf_token %}
+
+    <div class="row mt-4">
+        <div class="col-6">
+            <input type="text" name="title" id="" class="form-control" placeholder="Title">
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" name = 'author' placeholder="Author">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form }}
+        </div>
+       
+        <div class="col">
+            {{ form.media }}
+            
+        </div>
+    </div>
+  
+
+    <button class = "col-12 btn" type="submit">Submit</button>
+
+   
+</form>
+
+
+
+
+{% endblock content %}

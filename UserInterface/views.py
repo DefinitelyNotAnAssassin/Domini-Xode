@@ -1,6 +1,7 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from Models.models import * 
-
+from UserInterface.forms import ArticleForm
+from markdownx.utils import markdownify
 def index(request):
 
     print(Account.objects.all().order_by('role'))
@@ -22,6 +23,7 @@ def articles(request):
 
 def view_article(request, id):
     article = get_object_or_404(Announcements, id = id)
+    article.content = markdownify(article.content)
     
     return render(request, 'UserInterface/view_article.html', context = {'article': article} )
 
@@ -52,3 +54,18 @@ def contact_us(request):
     return render(request, 'UserInterface/contact_us.html')
 
 
+def add_article(request):
+
+    if request.method == 'GET':
+        form = ArticleForm()
+        items = {
+            'form': form,
+
+        }
+        return render(request, 'UserInterface/add_article.html', context = items)
+
+    elif request.method == 'POST':
+        payload = request.POST
+        new_article = Announcements(title = payload['title'], author = Account.objects.get(id = 2), content = payload['content'])
+        new_article.save()
+        return redirect('articles')
