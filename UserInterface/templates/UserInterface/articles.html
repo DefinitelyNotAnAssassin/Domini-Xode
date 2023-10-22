@@ -10,9 +10,14 @@
   <!--Main Navigation-->
   <header>
 
-    <!-- Navbar -->
- 
-    <!-- Navbar -->
+<style type="text/css" media="all">
+  .card-body{
+    display: block;
+    max-width = 32px!important;
+    text-overflow: ellipsis;
+    
+  }
+</style>
   </header>
   <!--Main Navigation-->
 
@@ -37,7 +42,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{article.title}}</h5>
                 <p class="card-text">
-                  {{article.content}}
+                  {{article.content |truncatewords:16}}
                 </p>
                 <a href="/articles/view_article/{{article.id}}" class="btn btn-primary">Read</a>
               </div>
