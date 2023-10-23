@@ -26,7 +26,7 @@ def view_article(request, id):
 
 def about_us(request):
 
-    officers = Account.objects.filter(role__range = [1, 11])
+    officers = Account.objects.filter(role__range = [1, 12])
     OrgRole = [(1, 'President'),(2, 'Internal Vice President'), (3, 'External Vice President'),
     (4, 'Treasurer'), (5, 'Secretary'), 
     (6, "Assistant Secretary"), (7, "Auditor"), (8, "Outreach Program Director"), (9, "Event Coordinator"),
