@@ -2,11 +2,12 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from Models.models import * 
 from UserInterface.forms import ArticleForm
 from markdownx.utils import markdownify
-
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages 
+from django.contrib.auth import login as login_user
+from django.contrib.auth import authenticate
 
 def index(request):
-
-    print(Account.objects.all().order_by('role'))
     return render(request, 'UserInterface/index.html')
 
 def articles(request):
@@ -44,11 +45,18 @@ def about_us(request):
 
 def contact_us(request):
     if request.method == 'POST':
-        return HttpResponse("Message sent")
+        data = request.POST 
+        msg = Messages(email = data['email'], full_name = data['fullname'], msg = data['message'], phone_number = data['phone'])
+        msg.save()
+        messages.success(request, "Message sent. The organization will respond in the email / phone number provided.")
+        return redirect("index")
     elif request.method == 'GET':
         return render(request, 'UserInterface/contact_us.html')
 
 
+
+
+@login_required 
 def add_article(request):
 
     if request.method == 'GET':
@@ -61,6 +69,21 @@ def add_article(request):
 
     elif request.method == 'POST':
         payload = request.POST
-        new_article = Announcements(title = payload['title'], author = Account.objects.get(id = 2), content = payload['content'])
+        new_article = Announcements(title = payload['title'], author = request.user, content = payload['content'])
         new_article.save()
         return redirect('articles')
+
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'UserInterface/login.html')
+    elif request.method == 'POST':
+        isExisting = authenticate(request, username = request.POST['username'], password = request.POST['password'])
+        if isExisting:
+            login_user(request, isExisting)
+            return HttpResponse("Login Succesfully")
+        else: 
+            redirect('login')
+        return HttpResponse("To implement")
+    else:
+        return HttpResponse("Invalid METHOD")

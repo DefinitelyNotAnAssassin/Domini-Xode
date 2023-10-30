@@ -79,7 +79,7 @@ TEMPLATES = [
 FORM_RENDERERFORM='django.forms.renderers.TemplatesSetting' 
 WSGI_APPLICATION = 'TheDominicanCode_2023.wsgi.application'
 
-
+LOGIN_URL = 'login'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 

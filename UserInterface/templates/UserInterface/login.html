@@ -1,0 +1,40 @@
+{% extends 'UserInterface/base.html' %}
+
+
+{% block title %} Login Page {% endblock title %} 
+
+
+{% block content %} 
+
+<div class ="d-flex flex-column min-vh-100 justify-content-center align-items-center">  
+    <form action = "/login" method = "post">
+        {% csrf_token %}
+     <div class="form-row align-items-center">
+        <h3 class="font-monospace">Login Page</h3>
+
+  
+       <div class="col-md-12 mb-2">
+            <input type="text" name="username" id="" class="form-control" placeholder="Username">
+       </div>
+       
+       <div class = "col-md-12 mb-1">
+            <input type="password" name="password" id="" class="form-control" placeholder="Password">
+           <small class="text-muted">  Not yet registered? Click <a href="/register?next={{next}}">here</a></small>
+        </div>
+
+
+        <div class = "col-md-12 mb-4">
+     
+         <button type="submit" class="btn btn-primary col-12 mt-2">Sign In</button>
+        </div>
+        
+       
+
+    
+   
+   </div>
+   </form>
+   </div>
+
+
+{% endblock content %}

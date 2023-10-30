@@ -42,12 +42,10 @@
 <form method="POST" action="/add_article">{% csrf_token %}
 
     <div class="row mt-4">
-        <div class="col-6">
+        <div class="col">
             <input type="text" name="title" id="" class="form-control" placeholder="Title">
         </div>
-        <div class="col-6">
-            <input type="text" class="form-control" name = 'author' placeholder="Author">
-        </div>
+    
     </div>
     <div class="row">
         <div class="col">

@@ -208,6 +208,59 @@
 
 
 
+<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand nav-link" target="_blank" href="/">
+      <h3>Domini Xode</h3>
+    </a>
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+      aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarExample01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/articles" rel="nofollow"
+            target="_blank"> Articles </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" target="_blank"> Events</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/about_us" class="nav-link">About Us</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/contact_us" class="nav-link">Contact Us</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav list-inline">
+        <!-- Icons -->
+     
+        <li class="">
+          <a class="nav-link" href="https://www.facebook.com/sdcadominixode" rel="nofollow" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/definitelynotanassassin" rel="nofollow" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <!--Footer-->
 <footer class="bg-light text-lg-start">
 <div class="py-4 text-center">
