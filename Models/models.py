@@ -21,7 +21,7 @@ class Account(AbstractUser):
     image_link = models.CharField(max_length=555, default = "https://preview.redd.it/h5gnz1ji36o61.png?width=225&format=png&auto=webp&s=84379f8d3bbe593a2e863c438cd03e84c8a474fa")
     description = models.CharField(max_length=255, default="Description")
     facebook_link = models.CharField(max_length=555, default = "https://www.facebook.com")
-    thumbnail = models.ImageField(null = True, blank=True)
+    
 
     def save(self, *args, **kwargs):
         if not self.pk: 
@@ -45,7 +45,7 @@ class Announcements(models.Model):
     author = models.ForeignKey(Account, on_delete=models.CASCADE)
     content = MarkdownxField(max_length=10000)
     date = models.DateTimeField(default = timezone.now)
-
+    thumbnail = models.ImageField(null = True, blank=True)
 
     def __str__(self):
         return f"{self.title} | {self.author}"
