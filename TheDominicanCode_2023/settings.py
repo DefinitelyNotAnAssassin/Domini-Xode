@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-sk-v7#xhu%x(ue3)jgid#vehalce!2-g6m$lv%(v6sw-t6co3@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tdc.pythonanywhere.com',
+                 '127.0.0.1',
+                 'localhost']
 
 
 # Application definition
@@ -126,9 +128,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+   os.path.join(os.getcwd(), "static/img"),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
