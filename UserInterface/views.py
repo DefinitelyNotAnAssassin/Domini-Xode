@@ -43,6 +43,7 @@ def articles(request):
     Returns:
         HttpResponse: Rendered articles page.
     """
+    
     if get_referer(request):
         q = Announcements.objects.all().order_by('-date')
         context = {
@@ -78,20 +79,24 @@ def about_us(request):
     Returns:
         HttpResponse: Rendered "about us" page.
     """
-    officers = Account.objects.filter(role__range=[1, 12])
-    OrgRole = [(1, 'President'), (2, 'Internal Vice President'), (3, 'External Vice President'),
-               (4, 'Treasurer'), (5, 'Secretary'), (6, "Assistant Secretary"), (7, "Auditor"),
-               (8, "Outreach Program Director"), (9, "Event Coordinator"), (10, "Public Information Officer"),
-               (11, "Digital Officer"), (12, "Representative"), (13, 'Member')]
-    abc = dict(OrgRole)
-    print(abc.get(5))
 
-    items = {
-        'members': officers,
-        'role': abc,
-    }
-    return render(request, 'UserInterface/about_us.html', context=items)
-@login_required
+    if get_referer(request):
+        officers = Account.objects.filter(role__range=[1, 12])
+        OrgRole = [(1, 'President'), (2, 'Internal Vice President'), (3, 'External Vice President'),
+                (4, 'Treasurer'), (5, 'Secretary'), (6, "Assistant Secretary"), (7, "Auditor"),
+                (8, "Outreach Program Director"), (9, "Event Coordinator"), (10, "Public Information Officer"),
+                (11, "Digital Officer"), (12, "Representative"), (13, 'Member')]
+        abc = dict(OrgRole)
+
+        items = {
+            'members': officers,
+            'role': abc,
+        }
+        return render(request, 'UserInterface/about_us.html', context=items)
+    else:
+        return redirect('index')
+
+
 def contact_us(request):
     """
     Renders a page for contacting the organization.
@@ -102,6 +107,7 @@ def contact_us(request):
     Returns:
         HttpResponse: Rendered "contact us" page or handles form submission.
     """
+
     if request.method == 'POST':
         data = request.POST
         msg = Messages(email=data['email'], full_name=data['fullname'], msg=data['message'], phone_number=data['phone'])
@@ -109,7 +115,11 @@ def contact_us(request):
         messages.success(request, "Message sent. The organization will respond in the email / phone number provided.")
         return redirect("index")
     elif request.method == 'GET':
-        return render(request, 'UserInterface/contact_us.html')
+        if get_referer(request):
+            
+            return render(request, 'UserInterface/contact_us.html')
+        else:
+            return redirect('index')
 
 @login_required
 def add_article(request):
@@ -157,3 +167,7 @@ def login(request):
         return HttpResponse("To implement")
     else:
         return HttpResponse("Invalid METHOD")
+
+
+def events(request):
+    return render(request, 'UserInterface/events.html')
