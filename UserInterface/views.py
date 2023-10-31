@@ -7,6 +7,20 @@ from django.contrib import messages
 from django.contrib.auth import login as login_user
 from django.contrib.auth import authenticate
 
+
+
+# Credits to stackoverflow for this 404 catcher 
+def bad_request(request, exception):
+    return redirect('index')
+
+# Credits to stackoverflow for this genius hack 
+def get_referer(request):
+    is_ajax = request.META.get("HTTP_REFERER")
+    if not is_ajax:
+        return False 
+    
+    else:
+        return True
 def index(request):
     """
     Renders the index page.
@@ -29,11 +43,14 @@ def articles(request):
     Returns:
         HttpResponse: Rendered articles page.
     """
-    q = Announcements.objects.all().order_by('-date')
-    context = {
-        'announcements': q
-    }
-    return render(request, 'UserInterface/articles.html', context=context)
+    if get_referer(request):
+        q = Announcements.objects.all().order_by('-date')
+        context = {
+            'announcements': q
+        }
+        return render(request, 'UserInterface/articles.html', context=context)
+    else:
+        return redirect('index')
 
 def view_article(request, id):
     """
@@ -74,7 +91,7 @@ def about_us(request):
         'role': abc,
     }
     return render(request, 'UserInterface/about_us.html', context=items)
-
+@login_required
 def contact_us(request):
     """
     Renders a page for contacting the organization.

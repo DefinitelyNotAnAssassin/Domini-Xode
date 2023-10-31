@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" hx-history = 'false'>
   <head>
 
 
@@ -8,7 +8,7 @@
     <title>{% block title %} {% endblock %}</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link type = 'css' rel="stylesheet" href="static/base.css">
 
 
     
@@ -42,20 +42,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active"  hx-push-url="true" hx-swap = 'transition:true'hx-history ='false' hx-get = '/' hx-target = 'body' role="button"  hx-trigger = 'click'>Home</a>
+            <a class="nav-link active"  hx-push-url="true" hx-swap = 'transition:true' hx-get = '/' hx-target = 'body' role="button"  hx-trigger = 'click'>Home</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" hx-history ='false'  hx-swap = 'transition:true' hx-push-url="true" hx-target = '.block' hx-get = '/articles' hx-target = 'body' hx-trigger = 'click'>Articles</a>
+            <a class="nav-link"   hx-swap = 'transition:true' hx-push-url="true" hx-target = '.block' hx-get = '/articles' hx-target = 'body'role="button"  hx-trigger = 'click'>Articles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" hx-history ='false' hx-swap = 'transition:true' hx-get = '/events'  hx-push-url="true" hx-target = 'body' hx-trigger = 'click'">Events</a>
+            <a class="nav-link"  hx-swap = 'transition:true' hx-get = '/events'  hx-push-url="true" hx-target = 'body'role="button"  hx-trigger = 'click'">Events</a>
           </li>
           <li class="nav-item">
-            <a hx-get = '/about_us'hx-history ='false' hx-swap = 'transition:true' hx-target = 'body' hx-trigger = 'click'  hx-push-url="true" class="nav-link">About Us</a>
+            <a hx-get = '/about_us' hx-swap = 'transition:true' hx-target = 'body' hx-trigger = 'click'  hx-push-url="true" role="button" class="nav-link">About Us</a>
           </li>
           <li class="nav-item">
-            <a hx-get = '/contact_us'hx-history ='false'  hx-swap = 'transition:true'hx-target = 'body' hx-trigger = 'click' class="nav-link"  hx-push-url="true">Contact Us</a>
+            <a hx-get = '/contact_us'  hx-swap = 'transition:true'hx-target = 'body' hx-trigger = 'click' class="nav-link"  role="button" hx-push-url="true">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -96,8 +96,7 @@
   
   <link
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
-  rel="stylesheet"
-  />
+  rel="stylesheet"/>
 
 
 
