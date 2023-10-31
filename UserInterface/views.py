@@ -170,4 +170,12 @@ def login(request):
 
 
 def events(request):
-    return render(request, 'UserInterface/events.html')
+    if get_referer(request):
+        q = Events.objects.all().order_by('-event_start_date')
+        items = {
+            'events': q
+        }
+   
+        return render(request, 'UserInterface/events.html', context = items)
+    else:
+        return redirect('index')

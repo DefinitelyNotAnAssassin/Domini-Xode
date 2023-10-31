@@ -1,11 +1,108 @@
 
 
-{% block title %} Domini Xode - Events {% endblock title %} 
-
-
-
 {% block content %} 
+<style>
+
+  a{
+    color: black !important;
+  }
+
+  .image{
+    width: 25vw;
+    height: 35vh;
+  
+  }
+ 
+  @media  (max-width: 768px) {
+    .image{
+        width: 65vw;
+        height: 45vh;
+      
+      }
+  }
+
+  
+</style>
+
+  <main class="my-5">
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h4 class="mb-5"><strong>Domini Xode Events</strong></h4>
+        
+     
+    <div class="row">
+    {% for event in events %}
+      
+
+   
+ <div class="col-lg-4 col-md-12 mb-4">
+   <div class="card">
+     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        {% load static %}
+        
+        <img class='image' src="{{event.event_flyer.url|cut:'/Models/' }}" alt="..." />
+       <a href="#!">
+        
+       
+         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+       </a>
+     </div>
+     <div class="card-body">
+        
+       <h5 class="card-title">{{event.event_name}}</h5>
+       <span class="badge badge-{{event|event_status}} ">{{event|date_status}}</span>
+       <p class="card-text">
+        
+        <br>
+         <strong>Start: {{event.event_start_date}}</strong>
+         <br>
+         <strong>End: {{event.event_end_date}}</strong>
+         <br>
+         {{event.event_description |truncatewords:16  }}
+       </p>
+       <button hx-get="/events/view_event/{{event.id}}" hx-trigger = 'click' hx-target = 'body' class="btn btn-primary">Read</button>
+     </div>
+   </div>
+
+
+ </div>
+ 
+
+ {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+ {% endif %}
+
+    {% endfor %}
+
+      
+      </section>
+      <!--Section: Content-->
+
+      <!-- Pagination -->
+      <nav class="my-4" aria-label="...">
+        <ul class="pagination pagination-circle justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item" aria-current="page">
+            <a class="page-link" href="#">2 <span class="sr-only"></span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+ 
+ 
+ 
+    
 
 
 
-{% endblock content %}
+{% endblock %}

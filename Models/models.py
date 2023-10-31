@@ -109,3 +109,17 @@ class Messages(models.Model):
     full_name = models.CharField(max_length=128)
     phone_number = models.CharField(max_length=16)
     msg = models.CharField(max_length=1028)
+
+
+class Events(models.Model):
+    event_name = models.CharField(max_length=64)
+    event_description = models.CharField(max_length=1028)
+    event_start_date = models.DateTimeField()
+    event_end_date = models.DateTimeField()
+    event_location = models.CharField(max_length=32)
+    event_registration_link = models.CharField(max_length=256, blank = True, null = True)
+    event_status = models.CharField(max_length=32, blank = True, null = True,default = 'Upcoming')
+    event_flyer = models.FileField(blank = True, null = True, upload_to='Models/static')
+    
+    def __str__(this):
+        return f'{this.event_name}'

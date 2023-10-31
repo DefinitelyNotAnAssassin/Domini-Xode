@@ -5,5 +5,7 @@ from . import models
 
 admin.site.register(models.Account)
 admin.site.register(models.Announcements)
+admin.site.register(models.Events)
+admin.site.register(models.Messages)
 
 
