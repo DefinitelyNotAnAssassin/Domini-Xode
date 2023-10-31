@@ -4,25 +4,25 @@
 {% block title %} The Dominican Code | Domini Xode  {% endblock title %} 
 
 
-{% block head %} 
-
-  <style>
-
-    a{
-      color: white !important;
-    }
-  </style>
+  
 
 
   {% load static %}
 
 
-{% endblock head %}
+
 
 
 
 
 {% block content %}
+
+<style>
+
+  a{
+    color: white !important;
+  }
+</style>
 <style>
   /* Carousel styling */
   #introCarousel,
@@ -86,9 +86,9 @@
           <div class="text-white text-center">
             <h1 class="mb-3">Domini Xode</h1>
             <p class="mb-4 mx-4">The Student Organization of the Bachelor of Science in Information Technology at St. Dominic College of Asia</p>
-            <a class="btn btn-outline-light btn-lg m-2" href="/articles"
+            <a class="btn btn-outline-light btn-lg m-2" hx-get = '/articles' hx-target = 'body' hx-trigger = 'click'
               role="button" rel="nofollow" target="_blank">Announcements</a>
-            <a class="btn btn-outline-light btn-lg m-2" href="/about_us"
+            <a class="btn btn-outline-light btn-lg m-2" hx-get = '/about_us' hx-target = 'body' hx-trigger = 'click'
               target="_blank" role="button">About Us</a>
           </div>
         </div>
