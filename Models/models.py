@@ -108,7 +108,7 @@ class Messages(models.Model):
     email = models.CharField(max_length=64)
     full_name = models.CharField(max_length=128)
     phone_number = models.CharField(max_length=16)
-    msg = models.CharField(max_length=1028)
+    msg = models.TextField(max_length=1028)
 
 
 class Events(models.Model):

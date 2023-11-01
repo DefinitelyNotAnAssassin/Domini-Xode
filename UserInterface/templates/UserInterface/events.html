@@ -61,7 +61,7 @@
          <br>
          {{event.event_description |truncatewords:16  }}
        </p>
-       <button hx-get="/events/view_event/{{event.id}}" hx-trigger = 'click' hx-target = 'body' class="btn btn-primary">Read</button>
+       <a href = "{{event.event_registration_link}}" class="btn btn-success" style="color: white !important;">Register</a>
      </div>
    </div>
 

@@ -108,12 +108,17 @@ def contact_us(request):
         HttpResponse: Rendered "contact us" page or handles form submission.
     """
 
+
+
     if request.method == 'POST':
         data = request.POST
         msg = Messages(email=data['email'], full_name=data['fullname'], msg=data['message'], phone_number=data['phone'])
         msg.save()
         messages.success(request, "Message sent. The organization will respond in the email / phone number provided.")
-        return redirect("index")
+        return render(request, 'UserInterface/index.html')
+    
+
+
     elif request.method == 'GET':
         if get_referer(request):
             
