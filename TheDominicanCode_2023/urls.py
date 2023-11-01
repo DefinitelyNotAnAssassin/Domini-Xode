@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf.urls import handler404
 
 
-#handler404 = 'UserInterface.views.bad_request'
+handler404 = 'UserInterface.views.bad_request'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('UserInterface.urls'))
