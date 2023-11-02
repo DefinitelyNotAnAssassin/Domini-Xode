@@ -6,9 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
 from django.contrib.auth import login as login_user
 from django.contrib.auth import authenticate
-
-
-
+from django.core.mail import send_mail
+from django.conf import settings
 # Credits to stackoverflow for this 404 catcher 
 def bad_request(request, exception):
     return redirect('index')
@@ -114,7 +113,16 @@ def contact_us(request):
         data = request.POST
         msg = Messages(email=data['email'], full_name=data['fullname'], msg=data['message'], phone_number=data['phone'])
         msg.save()
+        send_mail(subject = f"Domini Xode - Contact Us - {data['fullname']}",  message = f"""
+Name: {data['fullname']}
+<{data['email']}>
+Contact #: {data['phone']}
+
+{data['message']}
+        """, from_email = settings.EMAIL_HOST_USER, recipient_list = ['bsit.dominixode@sdca.edu.ph', 'winmari.manzano@sdca.edu.ph'])
+        
         messages.success(request, "Message sent. The organization will respond in the email / phone number provided.")
+        
         return render(request, 'UserInterface/index.html')
     
 
