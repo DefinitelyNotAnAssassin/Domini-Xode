@@ -1,4 +1,4 @@
-{% extends 'UserInterface/base.html' %}
+
 
 {% block content %} 
 <style>
@@ -6,7 +6,21 @@
   a{
     color: black !important;
   }
+
+  .image{
+    width: 25vw;
+    height: 35vh;
   
+  }
+ 
+  @media  (max-width: 768px) {
+    .image{
+        width: 65vw;
+        height: 45vh;
+      
+      }
+  }
+
   
 </style>
 
@@ -14,28 +28,40 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
-        <h4 class="mb-5"><strong>Latest posts</strong></h4>
+        <h4 class="mb-5"><strong>Domini Xode Events</strong></h4>
         
      
     <div class="row">
-    {% for article in announcements %}
+    {% for event in events %}
       
 
    
  <div class="col-lg-4 col-md-12 mb-4">
    <div class="card">
      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-       <img src="{{article.thumbnail.url}}" class="img-fluid"  alt = '...'/>
+        {% load static %}
+        
+        <img class='image' src="{{event.event_flyer.url|cut:'/Models/' }}" alt="..." />
        <a href="#!">
+        
+       
          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
        </a>
      </div>
      <div class="card-body">
-       <h5 class="card-title">{{article.title}}</h5>
+        
+       <h5 class="card-title">{{event.event_name}}</h5>
+       <span class="badge badge-{{event|event_status}} ">{{event|date_status}}</span>
        <p class="card-text">
-         {{article.content |truncatewords:16  }}
+        
+        <br>
+         <strong>Start: {{event.event_start_date}}</strong>
+         <br>
+         <strong>End: {{event.event_end_date}}</strong>
+         <br>
+         {{event.event_description |truncatewords:16  }}
        </p>
-       <button hx-get="/articles/view_article/{{article.id}}" hx-push-url = 'true' hx-trigger = 'click' hx-target = 'body' class="btn btn-primary">Read</button>
+       <a href = "{{event.event_registration_link}}" class="btn btn-success" style="color: white !important;">Register</a>
      </div>
    </div>
 

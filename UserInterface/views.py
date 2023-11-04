@@ -14,8 +14,8 @@ def bad_request(request, exception):
 
 # Credits to stackoverflow for this genius hack 
 def get_referer(request):
-    is_ajax = request.META.get("HTTP_REFERER")
-    if not is_ajax:
+    is_HTMX = request.META.get('HTTP_HX_REQUEST')
+    if not is_HTMX:
         return False 
     
     else:
@@ -30,7 +30,10 @@ def index(request):
     Returns:
         HttpResponse: Rendered index page.
     """
-    return render(request, 'UserInterface/index.html')
+    if get_referer(request):
+        return render(request, 'UserInterface/partition/index.html')
+    else:
+        return render(request, 'UserInterface/index.html')
 
 def articles(request):
     """
@@ -43,14 +46,15 @@ def articles(request):
         HttpResponse: Rendered articles page.
     """
     
-    if get_referer(request):
-        q = Announcements.objects.all().order_by('-date')
-        context = {
+    
+    q = Announcements.objects.all().order_by('-date')
+    context = {
             'announcements': q
         }
-        return render(request, 'UserInterface/articles.html', context=context)
+    if get_referer(request):
+        return render(request, 'UserInterface/partition/articles.html', context=context)
     else:
-        return redirect('index')
+        return render(request, 'UserInterface/articles.html', context=context)
 
 def view_article(request, id):
     """
@@ -79,21 +83,22 @@ def about_us(request):
         HttpResponse: Rendered "about us" page.
     """
 
-    if get_referer(request):
-        officers = Account.objects.filter(role__range=[1, 12])
-        OrgRole = [(1, 'President'), (2, 'Internal Vice President'), (3, 'External Vice President'),
+    
+    officers = Account.objects.filter(role__range=[1, 12])
+    OrgRole = [(1, 'President'), (2, 'Internal Vice President'), (3, 'External Vice President'),
                 (4, 'Treasurer'), (5, 'Secretary'), (6, "Assistant Secretary"), (7, "Auditor"),
                 (8, "Outreach Program Director"), (9, "Event Coordinator"), (10, "Public Information Officer"),
                 (11, "Digital Officer"), (12, "Representative"), (13, 'Member')]
-        abc = dict(OrgRole)
+    abc = dict(OrgRole)
 
-        items = {
+    items = {
             'members': officers,
             'role': abc,
         }
-        return render(request, 'UserInterface/about_us.html', context=items)
+    if get_referer(request):
+        return render(request, 'UserInterface/partition/about_us.html', context=items)
     else:
-        return redirect('index')
+        return render(request, 'UserInterface/about_us.html', context=items)
 
 
 def contact_us(request):
@@ -130,9 +135,9 @@ Contact #: {data['phone']}
     elif request.method == 'GET':
         if get_referer(request):
             
-            return render(request, 'UserInterface/contact_us.html')
+            return render(request, 'UserInterface/partition/contact_us.html')
         else:
-            return redirect('index')
+            return render(request, 'UserInterface/contact_us.html')
 
 @login_required
 def add_article(request):
@@ -183,12 +188,12 @@ def login(request):
 
 
 def events(request):
-    if get_referer(request):
-        q = Events.objects.all().order_by('-event_start_date')
-        items = {
+    
+    q = Events.objects.all().order_by('-event_start_date')
+    items = {
             'events': q
         }
-   
-        return render(request, 'UserInterface/events.html', context = items)
+    if get_referer(request):
+        return render(request, 'UserInterface/partition/events.html', context = items)
     else:
-        return redirect('index')
+        return render(request, 'UserInterface/events.html', context = items)

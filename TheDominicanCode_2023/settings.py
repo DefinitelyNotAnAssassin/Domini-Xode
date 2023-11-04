@@ -131,12 +131,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
    os.path.join(os.getcwd(), "static/img"),
-   os.path.join(os.getcwd(), "Models/static/")
+   os.path.join(os.getcwd(), "Models/static/"),
+   os.path.join(BASE_DIR, 'static')
 ]
 
 # Default primary key field type
@@ -152,3 +153,5 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
