@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECURITY_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tdc.pythonanywhere.com',
                  '127.0.0.1',
@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['tdc.pythonanywhere.com',
 # Application definition
 
 INSTALLED_APPS = [
+    'API.apps.ApiConfig',
     'markdownx',
     'django.forms',
     'Models.apps.ModelsConfig',
@@ -80,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-
+MARKDOWNX_MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite']
 FORM_RENDERERFORM='django.forms.renderers.TemplatesSetting' 
 WSGI_APPLICATION = 'TheDominicanCode_2023.wsgi.application'
 

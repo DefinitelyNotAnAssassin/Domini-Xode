@@ -8,6 +8,7 @@ from django.contrib.auth import login as login_user
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.conf import settings
+import openai
 # Credits to stackoverflow for this 404 catcher 
 def bad_request(request, exception):
     return redirect('index')
@@ -197,3 +198,18 @@ def events(request):
         return render(request, 'UserInterface/partition/events.html', context = items)
     else:
         return render(request, 'UserInterface/events.html', context = items)
+    
+
+def coding_ai(request):
+    
+    if get_referer(request):
+        return render(request, 'UserInterface/partition/coding_ai.html')
+    else:
+        return render(request, 'UserInterface/coding_ai.html')
+
+
+def html_prettier(request):
+    if get_referer(request):
+        return render(request, 'UserInterface/partition/html_prettier.html')
+    else:
+        return render(request, 'UserInterface/html_prettier.html')

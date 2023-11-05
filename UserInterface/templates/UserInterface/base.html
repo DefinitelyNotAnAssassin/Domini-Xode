@@ -35,7 +35,7 @@
 
    <nav class="navbar navbar-transparent navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand font-monospace" href="#">Domini Xode</a>
+      <a class="navbar-brand font-monospace" href="#">Domini</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,6 +57,19 @@
           <li class="nav-item">
             <a hx-get = '/contact_us'  hx-swap = 'transition:true'hx-target = '.block' hx-trigger = 'click' class="nav-link"  role="button" hx-push-url="true">Contact Us</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tools
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" hx-get = '/tools/coding_ai' hx-swap = 'transition:true' hx-target = '.block' hx-push-url = 'true'  href="#">Coding AI</a></li>
+              <li><a class="dropdown-item" hx-get = '/tools/prettier/html' hx-swap = 'transition:true' hx-target = '.block' hx-push-url = 'true'  href="#">HTML Prettier</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" hx-get = '/tools/prettier/js' hx-swap = 'transition: true' hx-target = '.block' hx-push-url = 'true' href="#">JS Prettier</a></li>
+            </ul>
+          </li>
+
+
         </ul>
       </div>
     </div>

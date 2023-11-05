@@ -33,7 +33,9 @@
   }
  
  
-
+.dropdown-item{
+  color: black !important;
+}
   /* tie the view transition to a given CSS class */
   .containerss {
       view-transition-name: slide-it;

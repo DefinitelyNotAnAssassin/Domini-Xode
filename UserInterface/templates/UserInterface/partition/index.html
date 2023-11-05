@@ -7,8 +7,18 @@
 {% load static %}
 <style>
 
-  a{
-    color: white !important;
+a{
+  color: white !important;
+}
+
+
+  .dropdown-menu{
+    background: transparent !important;
+    
+  }
+
+  .dropdown-menu>li>a:hover{
+    background-color:grey;
   }
 </style>
 <style>
@@ -22,7 +32,7 @@
 
   .carousel-item:nth-child(1) {
    
-    background-image: url('static/domini_xode_logo.jpg');
+    background-image: url('{% static "/domini_xode_logo.jpg" %}');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
