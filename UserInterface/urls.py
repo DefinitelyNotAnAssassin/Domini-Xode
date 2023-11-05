@@ -14,7 +14,8 @@ urlpatterns = [
     path('add_article', views.add_article, name = 'add article'),
     path('login', views.login, name = 'login'),
     path('tools/coding_ai', views.coding_ai, name = 'coding ai'),
-    path('tools/prettier/html', views.html_prettier, name = 'html prettier')
+    path('tools/prettier/html', views.html_prettier, name = 'html prettier'),
+    path('upload_file', views.upload_file, name = 'upload file')
 
     
 

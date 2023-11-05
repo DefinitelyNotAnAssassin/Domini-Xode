@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from Models.models import * 
-from UserInterface.forms import ArticleForm
+from UserInterface.forms import ArticleForm, TTSForm
 from markdownx.utils import markdownify
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.conf import settings
 import openai
+import json
+openai.api_key = "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"
+
+
 # Credits to stackoverflow for this 404 catcher 
 def bad_request(request, exception):
     return redirect('index')
@@ -213,3 +217,18 @@ def html_prettier(request):
         return render(request, 'UserInterface/partition/html_prettier.html')
     else:
         return render(request, 'UserInterface/html_prettier.html')
+    
+def upload_file(request):
+    if request.method == "GET":
+        items = {
+            'form': TTSForm(),
+        }
+        return render(request, 'UserInterface/TTS.html', context = items)
+    elif request.method == "POST":
+        form =TTSForm(request.POST, request.FILES)
+        if form.is_valid:
+           
+
+            transcript = openai.Audio.translate(model="whisper-1", file = request.FILES['audio_file'], response_format="text")
+            transcript = transcript.replace("Transcriber's Name Reviewer's Name Timing & Transcription by Rev.com", "")
+            return HttpResponse(json.dumps(transcript))
