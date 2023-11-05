@@ -10,7 +10,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 import openai
 import json
-openai.api_key = "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"
+import environ
+env = environ.Env()
+openai.api_key = env('API_KEY')
 
 
 # Credits to stackoverflow for this 404 catcher 
@@ -223,7 +225,10 @@ def upload_file(request):
         items = {
             'form': TTSForm(),
         }
-        return render(request, 'UserInterface/TTS.html', context = items)
+        if get_referer(request):
+            return render(request, 'UserInterface/partition/TTS.html', context = items)
+        else:
+            return render(request, 'UserInterface/TTS.html', context = items)
     elif request.method == "POST":
         form =TTSForm(request.POST, request.FILES)
         if form.is_valid:
