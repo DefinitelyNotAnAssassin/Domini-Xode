@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('Models', '0002_alter_account_role'),
+        ("Models", "0002_alter_account_role"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='account',
-            name='thumbnail',
+            model_name="account",
+            name="thumbnail",
         ),
         migrations.AddField(
-            model_name='announcements',
-            name='thumbnail',
-            field=models.ImageField(blank=True, null=True, upload_to=''),
+            model_name="announcements",
+            name="thumbnail",
+            field=models.ImageField(blank=True, null=True, upload_to=""),
         ),
     ]
