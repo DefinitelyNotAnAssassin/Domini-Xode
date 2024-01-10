@@ -1,3 +1,90 @@
+{% extends 'UserInterface/base.html' %}
+
+
+{% block title %} Articles {% endblock title %} 
+
+
+{% block content %} 
+<style>
+
+  a{
+    color: black !important;
+  }
+  
+  
+</style>
+
+  <main class="my-5">
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h4 class="mb-5"><strong>Latest posts</strong></h4>
+        
+     
+    <div class="row">
+    {% for article in announcements %}
+      
+
+   
+ <div class="col-lg-4 col-md-12 mb-4">
+   <div class="card">
+     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+       <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/363959470_268002949410153_908093610336867492_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFdYJSz7SmwqFstpjOgmmc1oqOXGFHttKmio5cYUe20qShvZz0vxfCrTMGM82k_O-HvuD8M6NmJZ8TISy_e_mtL&_nc_ohc=w0mXcFtryrQAX-Pn4Y2&_nc_ht=scontent.fmnl30-1.fna&oh=00_AfBRqbaGhoEMITXawykggrYr0lLt75w-sdCmqJwgOMB9lw&oe=6539C071" class="img-fluid" />
+       <a href="#!">
+         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+       </a>
+     </div>
+     <div class="card-body">
+       <h5 class="card-title">{{article.title}}</h5>
+       <p class="card-text">
+         {{article.content |truncatewords:16  }}
+       </p>
+       <button hx-get="/articles/view_article/{{article.id}}" hx-trigger = 'click' hx-target = 'body' class="btn btn-primary">Read</button>
+     </div>
+   </div>
+
+
+ </div>
+ 
+
+ {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+ {% endif %}
+
+    {% endfor %}
+
+      
+      </section>
+      <!--Section: Content-->
+
+      <!-- Pagination -->
+      <nav class="my-4" aria-label="...">
+        <ul class="pagination pagination-circle justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item" aria-current="page">
+            <a class="page-link" href="#">2 <span class="sr-only"></span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+ 
+ 
+ 
+    
+
+
+
+{% endblock %}
+
 
 
     <table class="table mt-5 mt-5 font-monospace">

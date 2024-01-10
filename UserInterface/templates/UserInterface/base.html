@@ -3,15 +3,19 @@
   <head>
 
 
-
-
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %} {% endblock %}</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+
+
+    
     {% block head %} 
     {% endblock %} 
+
+
     {% if messages %}
 
 
@@ -29,66 +33,73 @@
     {% endif %}
 
 
-    <style>
-      .navbar { background-color: transparent;
-    
-      
-      }
+   <nav class="navbar navbar-transparent navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand font-monospace" href="#">Domini Xode</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active"  hx-push-url="true" hx-swap = 'transition:true'hx-history ='false' hx-get = '/' hx-target = 'body' role="button"  hx-trigger = 'click'>Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" hx-history ='false'  hx-swap = 'transition:true' hx-push-url="true" hx-target = '.block' hx-get = '/articles' hx-target = 'body' hx-trigger = 'click'>Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" hx-history ='false' hx-swap = 'transition:true' hx-get = '/events'  hx-push-url="true" hx-target = 'body' hx-trigger = 'click'">Events</a>
+          </li>
+          <li class="nav-item">
+            <a hx-get = '/about_us'hx-history ='false' hx-swap = 'transition:true' hx-target = 'body' hx-trigger = 'click'  hx-push-url="true" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a hx-get = '/contact_us'hx-history ='false'  hx-swap = 'transition:true'hx-target = 'body' hx-trigger = 'click' class="nav-link"  hx-push-url="true">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 
-      
-    </style>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   </head>
-  <body>
-    <nav class="navbar navbar-transparent navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand font-monospace" href="#">Domini Xode</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-         
-            <li class="nav-item">
-              <a class="nav-link" href="/articles">Articles</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/events">Events</a>
-            </li>
-            <li class="nav-item">
-              <a href="/about_us" class="nav-link">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="/contact_us" class="nav-link">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-    <!-- Font Awesome -->
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-rel="stylesheet"
-/>
-<!-- Google Fonts -->
-<link
-href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
-rel="stylesheet"
-/>
 
+
+
+<body class="containerss">
+    
+
+
+  <div class="block">
     {% block content %}
 
     {% endblock %}
+  
+
+  </div>
+ 
+
+
+
+  <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+  />
+  <link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+  />
+  
+  <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
+  rel="stylesheet"
+  />
+
+
 
 
     {% block script %}
@@ -100,6 +111,8 @@ rel="stylesheet"
 type="text/javascript"
 src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"
 ></script>
+
+<script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>
