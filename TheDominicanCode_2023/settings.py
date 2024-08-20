@@ -30,8 +30,7 @@ SECRET_KEY = env('SECURITY_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['tdc.pythonanywhere.com',
-                 '127.0.0.1',
-                 'localhost']
+                'www.dominixode.org']
 
 
 # Application definition
