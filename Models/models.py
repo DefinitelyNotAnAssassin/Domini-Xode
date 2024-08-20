@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser 
+from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from markdownx.models import MarkdownxField
 
@@ -25,7 +25,7 @@ class Account(AbstractUser):
     Inherits from AbstractUser.
     """
     OrgRole = [(1, 'President'),(2, 'Internal Vice President'), (3, 'External Vice President'),
-               (4, 'Treasurer'), (5, 'Secretary'), 
+               (4, 'Treasurer'), (5, 'Secretary'),
                (6, "Assistant Secretary"), (7, "Auditor"), (8, "Outreach Program Director"), (9, "Event Coordinator"),
                (10, "Public Information Officer"), (11, "Digital Officer"), (12, "Representative"), (13, 'Member')
               ]
@@ -34,32 +34,8 @@ class Account(AbstractUser):
     description = models.CharField(max_length=255, default="Description")
     facebook_link = models.CharField(max_length=555, default="https://www.facebook.com")
 
-    def save(self, *args, **kwargs):
-        """
-        Overrides the save method to set the user's password securely.
 
-        Args:
-            *args: Additional arguments.
-            **kwargs: Additional keyword arguments.
-        """
-        if not self.pk: 
-            self.set_password(self.password)
-        super().save(*args, **kwargs)
 
-    def create_superuser(self, username, email, password=None, **extra_fields):
-        """
-        Creates a superuser with specific attributes.
-
-        Args:
-            username (str): The username for the superuser.
-            email (str): The email address for the superuser.
-            password (str): The password for the superuser.
-            **extra_fields: Additional fields for the superuser.
-        """
-        user = self.create_user(username, email, password=password, is_staff=True, **extra_fields)
-        user.is_active = True
-        user.save(using=self._db)
-        return
 
     class Meta:
         ordering = ['role']
@@ -120,6 +96,6 @@ class Events(models.Model):
     event_registration_link = models.CharField(max_length=256, blank = True, null = True)
     event_status = models.CharField(max_length=32, blank = True, null = True,default = 'Upcoming')
     event_flyer = models.FileField(blank = True, null = True, upload_to='Models/static')
-    
+
     def __str__(this):
         return f'{this.event_name}'
