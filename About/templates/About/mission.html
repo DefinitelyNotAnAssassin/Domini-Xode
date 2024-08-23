@@ -1,0 +1,91 @@
+{% extends 'UserInterface/base.html' %}
+
+<!-- Mission -->
+
+{% block content %}
+
+<div class="h-screen w-full">
+  <div class="h-full w-full bg-gray-900 flex items-center justify-center">
+    <!-- This is an example component -->
+
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Raleway"
+      />
+      <style>
+        body {
+          font-family: "Raleway", sans-serif;
+        }
+      </style>
+    </head>
+    <div class="p-4 mt-12 text-gray-600">
+      <h1 class="mb-8 text-center text-3xl font-bold text-white">
+        This is - what we do :
+      </h1>
+
+      <ul class="grid place-content-center sm:grid-cols-2 gap-8">
+        <li class="flex">
+          <div class="px-4 text-5xl font-extralight text-white">01.</div>
+          <div>
+            <div class="text-xl font-bold text-white">Academic Excellence</div>
+            <p class="max-w-xs py-2 text-sm text-white">
+              To create a supportive learning environment that encourages
+              academic achievement and fosters a passion for information
+              technology.
+            </p>
+          </div>
+        </li>
+        <li class="flex">
+          <div class="px-4 text-5xl font-extralight text-white">02.</div>
+          <div>
+            <div class="text-xl font-bold text-white">Community Engagement</div>
+            <p class="max-w-xs py-2 text-sm text-white">
+              To actively participate in community outreach programs and
+              initiatives to leverage information technology for social good.
+            </p>
+          </div>
+        </li>
+        <li class="flex">
+          <div class="px-4 text-5xl font-extralight text-white">03.</div>
+          <div>
+            <div class="text-xl font-bold text-white">
+              Professional Development
+            </div>
+            <p class="max-w-xs py-2 text-sm text-white">
+              To assist members in building strong professional networks and
+              securing meaningful career opportunities.
+            </p>
+          </div>
+        </li>
+        <li class="flex">
+          <div class="px-4 text-5xl font-extralight text-white">04.</div>
+          <div>
+            <div class="text-xl font-bold text-white">
+              Leadership Development
+            </div>
+            <p class="max-w-xs py-2 text-sm text-white">
+              To cultivate leadership skills among members and provide
+              opportunities for them to take on leadership roles within the
+              organization.
+            </p>
+          </div>
+        </li>
+        <li class="flex">
+          <div class="px-4 text-5xl font-extralight text-white">05.</div>
+          <div>
+            <div class="text-xl font-bold text-white">
+              Advocacy and Representation
+            </div>
+            <p class="max-w-xs py-2 text-sm text-white">
+              To represent the interests of information technology students and
+              advocate for their needs and concerns.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,104 +1,62 @@
+{% extends 'UserInterface/base.html' %} {% block content %}
 
-{% extends 'UserInterface/base.html' %}
-{% block content %} 
-<style>
+{% load custom_filter %}
 
-  a{
+<style> 
+  nav a { 
     color: black !important;
   }
-
-  .image{
-    width: 25vw;
-    height: 35vh;
-  
+  #hero
+  {
+    color: black !important;
   }
  
-  @media  (max-width: 768px) {
-    .image{
-        width: 65vw;
-        height: 45vh;
-      
-      }
-  }
 
-  
 </style>
 
-  <main class="my-5">
-    <div class="container">
-      <!--Section: Content-->
-      <section class="text-center">
-        <h4 class="mb-5"><strong>Domini Xode Officers</strong></h4>
-        
-     
-    <div class="row">
+<div class="h-screen w-full flex flex-col items-center justify-center ">
+
+  <h1 class="text-4xl mb-16">Domini Xode Officers</h1>
+
+  <div class="h-1/2 w-full flex justify-center flex-wrap gap-4">
     {% for year in years %}
-      
+       
 
-   
- <div class="col-lg-4 col-md-12 mb-4">
-   <div class="card">
-     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg">
+      <a href="#">
+        {% if year.image %} 
 
+        <img class="rounded-t-lg h-80" src="{{year.image.url}}" alt="" />
 
-      {% if year.image %}
-        <img
-          src="{{year.image.url}}"
-          class="image"
-        />
-        <a href="#!">
-          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
-        </a>
+        {% else %} 
+
+        <img class="rounded-t-lg h-80" src="/media/domini_xode_logo.jpg" alt="" />
 
         {% endif %}
-        
 
-     </div>
-     <div class="card-body">
-        
-        <h1>{{year.year}}</h1>
-    
-     </div>
-   </div>
+      </a>
+      <div class="p-5 flex flex-col gap-8">
+        <a href="#">
+          <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 text-center">{{year}}</h5>
 
 
- </div>
- 
-
- {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
- {% endif %}
-
-    {% endfor %}
-
+          
+        </a>
       
-      </section>
-      <!--Section: Content-->
-
-      <!-- Pagination -->
-      <nav class="my-4" aria-label="...">
-        <ul class="pagination pagination-circle justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only"></span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+        <a href="#" class=" items-center px-3 py-2 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+          <h1 class="w-full text-center">Officer List</h1>
+           
+        </a>
+      </div>
     </div>
-  </main>
- 
- 
- 
+
     
+      {% endfor %}
+  </div>
+ 
+</div>
 
+  <div class="h-screen w-full"></div>
 
-
-{% endblock %}
+  {% endblock %}
+</div>
