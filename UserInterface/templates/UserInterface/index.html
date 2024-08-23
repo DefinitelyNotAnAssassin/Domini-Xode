@@ -1,195 +1,262 @@
 {% extends "UserInterface/base.html" %} {% block title %} The Dominican Code |
-Domini Xode {% endblock title %} {% load static %} {% block content %}
-<style>
-  a {
-    color: white !important;
-  }
+Domini Xode {% endblock title %} {% load static %}
 
-  .dropdown-menu {
-    background: transparent !important;
-  }
+<!-- Content -->
 
-  .dropdown-menu > li > a:hover {
-    background-color: grey;
-  }
-</style>
+{% block content %}
 
-<style>
-  /* Carousel styling */
-  #introCarousel,
-  .carousel-inner,
-  .carousel-item,
-  .carousel-item.active {
-    height: 100vh;
-  }
-
-  .navbar {
-    z-index: 1;
-  }
-  .carousel-item:nth-child(1) {
-    /* background-image: url('{% static "/domini_xode_logo.jpg" %}'); */
-    background-image: url('{% static "/domini_xode_logo.jpg" %}');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-  }
-
-  .carousel-item:nth-child(2) {
-    background-image: url('{% static "/domini_xode_outreach.jpg" %}');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-  }
-
-  .carousel-item:nth-child(3) {
-    background-image: url('{% static "/domini_xode_event.jpg" %}');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-  }
-
-  /* Height for devices larger than 576px */
-  #introCarousel {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-  }
-
-  @media (min-width: 992px) {
-    #introCarousel {
-      position: absolute;
-      height: 100vh;
-      width: 100vw;
-      top: 0;
-      z-index: 0;
-    }
-  }
-
-  .section {
-    z-index: 0;
-  }
-</style>
-
-<!-- Carousel wrapper -->
 <div
-  id="introCarousel"
-  class="carousel slide carousel-fade shadow-2-strong"
-  data-mdb-ride="carousel"
+  id="default-carousel"
+  class="top- w-full h-screen z-0"
+  data-carousel="static"
 >
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li
-      data-mdb-target="#introCarousel"
-      data-mdb-slide-to="0"
-      class="active"
-    ></li>
-    <li data-mdb-target="#introCarousel" data-mdb-slide-to="1"></li>
-    <li data-mdb-target="#introCarousel" data-mdb-slide-to="2"></li>
-  </ol>
+  <!-- Carousel wrapper -->
+  <div class="relative h-full overflow-hidden">
+    <!-- Item 1 -->
 
-  <!-- Inner -->
-  <div class="carousel-inner">
-    <!-- Single item -->
-    <div class="carousel-item active">
-      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
-        <div class="d-flex justify-content-center align-items-center h-100">
-          <div class="text-white text-center">
-            <h1 class="mb-3">Domini Xode</h1>
-            <p class="mb-4 mx-4">
-              The Student Organization of the Bachelor of Science in Information
-              Technology at St. Dominic College of Asia
-            </p>
-            <a
-              class="btn btn-outline-light btn-lg m-2"
-              hx-get="/articles"
-              hx-swap="transition:true"
-              hx-push-url="true"
-              hx-url
-              hx-target=".block"
-              hx-trigger="click"
-              role="button"
-              rel="nofollow"
-              target="_blank"
-              >Announcements</a
-            >
-            <a
-              class="btn btn-outline-light btn-lg m-2"
-              hx-get="/about_us"
-              hx-swap="transition:true"
-              hx-push-url="true"
-              hx-target=".block"
-              hx-trigger="click"
-              target="_blank"
-              role="button"
-              >About Us</a
-            >
-          </div>
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <div
+        class="h-screen w-full bg-black absolute z-10 opacity-70 flex justify-center items-center"
+      ></div>
+
+      <div
+        class="h-screen w-full absolute z-20 flex flex-col justify-center items-center gap-4"
+      >
+        <h1 class="text-4xl font-semibold text-white">Domini Xode</h1>
+        <p class="text-sm text-white">
+          The Student Organization of the Bachelor of Science in Information
+          Technology at St. Dominic College of Asia
+        </p>
+
+        <div class="flex gap-4 mt-4">
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs rounded rounded-md"
+          >
+            ANNOUNCEMENT
+          </button>
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs font-semibold rounded rounded-md"
+          >
+            ABOUT US
+          </button>
         </div>
       </div>
+      <img
+        src="/static/domini_xode_logo.jpg"
+        class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
     </div>
+    <!-- Item 2 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <div
+        class="h-screen w-full bg-black absolute z-10 opacity-70 flex justify-center items-center"
+      ></div>
 
-    <!-- Single item -->
-    <div class="carousel-item">
-      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
-        <div class="d-flex justify-content-center align-items-center h-100">
-          <div class="text-white text-center">
-            <h2>Outreach</h2>
-            <a class="btn btn-outline-light btn-lg m-2" href="#" role="button"
-              >Outreach Documentation</a
-            >
-          </div>
+      <div
+        class="h-screen w-full absolute z-20 flex flex-col justify-center items-center"
+      >
+        <h1 class="text-3xl font-semibold text-white">Outreach</h1>
+
+        <div class="flex gap-4 mt-4">
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs rounded rounded-md"
+          >
+            OUTREACH DOCUMENTATION
+          </button>
         </div>
       </div>
+      <img
+        src="/static/domini_xode_outreach.jpg"
+        class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
     </div>
+    <!-- Item 3 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <div
+        class="h-screen w-full bg-black absolute z-10 opacity-70 flex justify-center items-center"
+      ></div>
 
-    <!-- Single item -->
-    <div class="carousel-item">
-      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)" ;>
-        <div class="d-flex justify-content-center align-items-center h-100">
-          <div class="text-white text-center">
-            <h2>Events and Activities</h2>
-            <a
-              class="btn btn-outline-light btn-lg m-2"
-              hx-get="/events"
-              hx-push-url="true"
-              hx-swap="transition: true"
-              hx-trigger="click"
-              hx-target=".block"
-              href="#"
-              role="button"
-              >Events and Activities Documentation</a
-            >
-          </div>
+      <div
+        class="h-screen w-full absolute z-20 flex flex-col justify-center items-center"
+      >
+        <h1 class="text-3xl font-semibold text-white">Events and Activities</h1>
+
+        <div class="flex gap-4 mt-4">
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs rounded rounded-md"
+          >
+            EVENTS AND ACTIVITIES DOCUMENTATION
+          </button>
         </div>
       </div>
+      <img
+        src="/static/domini_xode_event.jpg"
+        class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
+    </div>
+    <!-- Item 4 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <div
+        class="h-screen w-full bg-black absolute z-10 opacity-70 flex justify-center items-center"
+      ></div>
+      <div
+        class="h-screen w-full absolute z-20 flex flex-col justify-center items-center"
+      >
+        <h1 class="text-4xl font-semibold text-white">Domini Xode</h1>
+        <p class="text-sm text-white">
+          The Student Organization of the Bachelor of Science in Information
+          Technology at St. Dominic College of Asia
+        </p>
+
+        <div class="flex gap-4 mt-8">
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs rounded rounded-md"
+          >
+            ANNOUNCEMENT
+          </button>
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs font-semibold rounded rounded-md"
+          >
+            ABOUT US
+          </button>
+        </div>
+      </div>
+      <img
+        src="/static/domini_xode_logo.jpg"
+        class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
+    </div>
+    <!-- Item 5 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <div
+        class="h-screen w-full h-full object-cover bg-black absolute z-10 opacity-70 flex justify-center items-center"
+      ></div>
+      <div
+        class="h-screen w-full absolute z-20 flex flex-col justify-center items-center"
+      >
+        <h1 class="text-4xl font-semibold text-white">Domini Xode</h1>
+        <p class="text-sm text-white">
+          The Student Organization of the Bachelor of Science in Information
+          Technology at St. Dominic College of Asia
+        </p>
+
+        <div class="flex gap-4 mt-8">
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs rounded rounded-md"
+          >
+            ANNOUNCEMENT
+          </button>
+          <button
+            class="border-2 border-white p-2 px-2 text-white text-xs font-semibold rounded rounded-md"
+          >
+            ABOUT US
+          </button>
+        </div>
+      </div>
+      <img
+        src="/static/domini_xode_logo.jpg"
+        class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
     </div>
   </div>
-  <!-- Inner -->
-
-  <!-- Controls -->
-  <a
-    class="carousel-control-prev"
-    href="#introCarousel"
-    role="button"
-    data-mdb-slide="prev"
+  <!-- Slider indicators -->
+  <div
+    class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
   >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a
-    class="carousel-control-next"
-    href="#introCarousel"
-    role="button"
-    data-mdb-slide="next"
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="true"
+      aria-label="Slide 1"
+      data-carousel-slide-to="0"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 2"
+      data-carousel-slide-to="1"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 3"
+      data-carousel-slide-to="2"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 4"
+      data-carousel-slide-to="3"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 5"
+      data-carousel-slide-to="4"
+    ></button>
+  </div>
+  <!-- Slider controls -->
+  <button
+    type="button"
+    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-prev
   >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+    >
+      <svg
+        class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 1 1 5l4 4"
+        />
+      </svg>
+      <span class="sr-only">Previous</span>
+    </span>
+  </button>
+  <button
+    type="button"
+    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-next
+  >
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+    >
+      <svg
+        class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 9 4-4-4-4"
+        />
+      </svg>
+      <span class="sr-only">Next</span>
+    </span>
+  </button>
 </div>
-
-</div>
-<div class="vh-100 w-100 section bg-primary"></div>
-
 
 {% endblock content %}
