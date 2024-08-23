@@ -1,75 +1,64 @@
-{% extends 'UserInterface/base.html' %}
-
-{% block head %} 
-    <style>
-        .markdownx, .row{
-            display: flex;
-            
-
-        }
-
-
-        .markdownx-editor{
-            flex: 50%;
-            width: 50vw;
-         
-           
-        }
-    
-        .markdownx-preview{
-            padding-left: 5vw;
-            flex: 50%;
-            width: 45vw;
-            border: 1px;
-            border-color: black;
-            
-        }
-
-        .markdownx-editor, .markdownx-preview{
-            height: 50vh;
-        }
-
-    
-    </style>
-{% endblock head %}
-
-{% block title %} Add Article {% endblock title %} 
-
-
-{% block content %} 
+{% extends 'UserInterface/base.html' %} {% block head %}
 <style>
+  .markdownx,
+  .row {
+    display: flex;
+  }
 
-    a{
-      color: black !important;
-    }
-</style>  
+  .markdownx-editor {
+    flex: 50%;
+    width: 50vw;
+  }
 
-<form method="POST" action="/add_article">{% csrf_token %}
+  .markdownx-preview {
+    padding-left: 5vw;
+    flex: 50%;
+    width: 45vw;
+    border: 1px;
+    border-color: black;
+  }
 
-    <div class="row mt-4">
-        <div class="col">
-            <input type="text" name="title" id="" class="form-control" placeholder="Title">
-        </div>
-    
+  .markdownx-editor,
+  .markdownx-preview {
+    height: 50vh;
+    overflow: auto;
+  }
+</style>
+
+{% endblock head %} {% block title %} Add Article {% endblock title %}
+
+<!-- Add Article -->
+{% block content %}
+<style>
+  a {
+    color: black !important;
+  }
+</style>
+
+<form method="POST" action="{% url 'add article' %}">
+  {% csrf_token %}
+
+  <div class="row mt-4">
+    <div class="col-md-12 d-flex justify-content-center mb-4">
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="w-75 form-control"
+        placeholder="Title"
+      />
     </div>
-    <div class="row">
-        <div class="col">
-            {{ form }}
-        </div>
-       
-        <div class="col">
-            {{ form.media }}
-            
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center mb-4">
+      {{ form.content }}
     </div>
-  
+    {{ form.media }}
+  </div>
 
-    <button class = "col-12 btn" type="submit">Submit</button>
-
-   
+  <div class="d-flex justify-content-center">
+    <button class="w-50 btn btn-primary" type="submit">Submit</button>
+  </div>
 </form>
-
-
-
 
 {% endblock content %}

@@ -61,8 +61,9 @@ class Announcements(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Account, on_delete=models.CASCADE)
     content = MarkdownxField(max_length=10000)
+    description = models.CharField(max_length=255, default="Description")
     date = models.DateTimeField(default=timezone.now)
-    thumbnail = models.ImageField(null=True, blank=True, default  = '/static/domini_xode_logo.jpg', upload_to='static/')
+    thumbnail = models.ImageField(null=True, blank=True, default  = '/domini_xode_logo.jpg', upload_to='static/')
 
     def __str__(self):
         return f"{self.title} | {self.author}"

@@ -25,7 +25,12 @@
  <div class="col-lg-4 col-md-12 mb-4">
    <div class="card">
      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-       <img src="{{article.thumbnail.url}}" class="img-fluid"  alt = '...'/>
+      {% if article.thumbnail %}
+
+      <img src="{{article.thumbnail.url}}" class="img-fluid"  alt = '...'/>
+
+      {% endif %}
+
        <a href="#!">
          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
        </a>
@@ -33,7 +38,7 @@
      <div class="card-body">
        <h5 class="card-title">{{article.title}}</h5>
        <p class="card-text">
-         {{article.content |truncatewords:16  }}
+         {{article.description |truncatewords:16  }}
        </p>
        <button hx-get="/articles/view_article/{{article.id}}" hx-push-url = 'true' hx-trigger = 'click' hx-target = 'body' class="btn btn-primary">Read</button>
      </div>

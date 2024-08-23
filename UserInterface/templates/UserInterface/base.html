@@ -52,7 +52,7 @@
 
     {% block head %} {% endblock %}
 
-    <!-- Notifications -->
+    <!-- Notification-->
     {% if messages %} {% for message in messages %}
 
     <div
@@ -124,17 +124,41 @@
                 >Events</a
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
               <a
-                hx-get="/about_us"
-                hx-swap="transition:true"
-                hx-target=".block"
-                hx-trigger="click"
-                hx-push-url="true"
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
                 role="button"
-                class="nav-link"
-                >About Us</a
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
+                About Us
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    hx-get="/tools/coding_ai"
+                    hx-swap="transition:true"
+                    hx-target=".block"
+                    hx-push-url="true"
+                    href="#"
+                    >Domini Xode Officers</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    hx-get="/tools/prettier/html"
+                    hx-swap="transition:true"
+                    hx-target=".block"
+                    hx-push-url="true"
+                    href="#"
+                    >History of the Organization</a
+                  >
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
               <a
@@ -147,54 +171,6 @@
                 hx-push-url="true"
                 >Contact Us</a
               >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Tools
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    hx-get="/tools/coding_ai"
-                    hx-swap="transition:true"
-                    hx-target=".block"
-                    hx-push-url="true"
-                    href="#"
-                    >Coding AI</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    hx-get="/tools/prettier/html"
-                    hx-swap="transition:true"
-                    hx-target=".block"
-                    hx-push-url="true"
-                    href="#"
-                    >HTML Prettier</a
-                  >
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    hx-get="/upload_file"
-                    hx-swap="transition: true"
-                    hx-target=".block"
-                    hx-push-url="true"
-                    href="#"
-                    >TTS</a
-                  >
-                </li>
-              </ul>
             </li>
           </ul>
         </div>

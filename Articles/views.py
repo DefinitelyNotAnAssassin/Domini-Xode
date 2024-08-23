@@ -5,6 +5,7 @@ from Articles.forms import ArticleForm
 from markdownx.utils import markdownify 
 from django.contrib.auth.decorators import login_required 
 from UserInterface.views import get_referer 
+import unmarkd
 
 # Create your views here.
 
@@ -23,9 +24,14 @@ def articles(request):
     
     
     q = Announcements.objects.all().order_by('-date')
+    
+    
+    
+
     context = {
             'announcements': q
         }
+    
     if get_referer(request):
         return render(request, 'Articles/partition/articles.html', context=context)
     else:
