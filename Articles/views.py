@@ -68,6 +68,7 @@ def add_article(request):
     """
     if request.method == 'GET':
         form = ArticleForm()
+        
         items = {
             'form': form,
         }

@@ -51,6 +51,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
     {% load static %}
 
 
@@ -111,17 +113,33 @@
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 bg-white md:bg-transparent rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  ">
         <li>
-          <a href="{% url 'index' %}" class="block py-2 px-3 text-black md:text-white  rounded   md:p-0" aria-current="page">Home</a>
+          <a 
+          hx-get="{% url 'index' %}"
+          hx-push-url="true"  
+          hx-swap="innerHTML transition:true"
+          hx-target = "#content"
+          
+          
+          class="cursor-pointer block py-2 px-3 text-black md:text-white  rounded   md:p-0" aria-current="page">Home</a>
         </li>
         <li>
-          <a href="{% url 'articles' %}" class="block py-2 px-3 text-black md:text-white rounded  md:border-0  md:p-0 ">Articles</a>
+          <a      
+          hx-get="{% url 'articles' %}" 
+          hx-push-url="true"
+          hx-swap="transition:true"
+          hx-target = "#content"
+           class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0  md:p-0 ">Articles</a>
         </li>
         <li>
-          <a href="{% url 'events' %}" class="block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 ">Events</a>
+          <a 
+          hx-get="{% url 'events' %}" 
+          hx-push-url="true"
+          hx-swap="transition:true"
+          hx-target = "#content" class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 ">Events</a>
         </li>
         <li>
           
-<a id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 inline-flex items-center" type="button">About Us <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+<a id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 inline-flex items-center" type="button">About Us <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
   </svg>
   </a>
@@ -130,13 +148,27 @@
   <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
       <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
         <li>
-          <a href="{% url 'yearlist' %}" class="block px-4 py-2 text-black">Domini Xode Officers</a>
+          <a 
+          
+          hx-get="{% url 'yearlist' %}" 
+          hx-push-url="true"
+          hx-swap="transition:true"
+          hx-target = "#content"
+          class="cursor-pointer block px-4 py-2 text-black">Domini Xode Officers</a>
         </li>
         <li>
-          <a href="{% url 'testimonials' %}" class="block px-4 py-2 text-black">Testimonies</a>
+          <a hx-get="{% url 'testimonials' %}"
+          hx-push-url="true"
+          hx-swap="innerHTML transition:true"
+          hx-target="#content" 
+          class="cursor-pointer block px-4 py-2 text-black">Testimonies</a>
         </li>
         <li>
-          <a href="{% url 'mission' %}" class="block px-4 py-2 text-black">Domini Xode Mission </a>
+          <a hx-get="{% url 'mission' %}"
+          hx-push-url="true"
+          hx-swap="innerHTML transition:true"
+          hx-target="#content" 
+          class="cursor-pointer block px-4 py-2 text-black">Domini Xode Mission </a>
         </li>
         <li>
 
@@ -146,7 +178,13 @@
   
         </li>
         <li>
-          <a href="{% url 'contact' %}" class="block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 ">Contact Us</a>
+          <a 
+          hx-get="{% url 'contact' %}" 
+          hx-push-url="true"
+          hx-swap="innerHTML transition:true"
+          hx-target = "#content"
+        
+          class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 ">Contact Us</a>
         </li>
       </ul>
     </div>
@@ -157,7 +195,7 @@
   
 
   <body class="bodyContainer">
-    <div class="content">{% block content %} {% endblock %}</div>
+    <div id="content">{% block content %} {% endblock %}</div>
 
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -168,8 +206,7 @@
       rel="stylesheet"
     />
 
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-
+   
     {% block script %} {% endblock %}
 
 

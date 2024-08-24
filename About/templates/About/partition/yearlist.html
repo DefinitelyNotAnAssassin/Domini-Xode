@@ -1,0 +1,66 @@
+
+{% load custom_filter %}
+{% block content %}
+<style> 
+  nav a { 
+    color: black !important;
+  }
+  #hero
+  {
+    color: black !important;
+  }
+
+  .hamburger-icon{ 
+    fill: black; 
+    stroke: black;
+  }
+ 
+
+</style>
+
+<div class="h-screen w-full flex flex-col items-center justify-center ">
+
+  <h1 class="text-4xl mb-16">Domini Xode Officers</h1>
+
+  <div class="h-1/2 w-full flex justify-center flex-wrap gap-4">
+    {% for year in years %}
+       
+
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg">
+      <a href="#">
+        {% if year.image %} 
+
+        <img class="rounded-t-lg h-80" src="{{year.image.url}}" alt="" />
+
+        {% else %} 
+
+        <img class="rounded-t-lg h-80" src="/media/domini_xode_logo.jpg" alt="" />
+
+        {% endif %}
+
+      </a>
+      <div class="p-5 flex flex-col gap-8">
+        <a href="#">
+          <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 text-center">{{year}}</h5>
+
+
+          
+        </a>
+      
+        <a href="#" class=" items-center px-3 py-2 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+          <h1 class="w-full text-center">Officer List</h1>
+           
+        </a>
+      </div>
+    </div>
+
+    
+      {% endfor %}
+  </div>
+ 
+</div>
+
+  <div class="h-screen w-full"></div>
+
+  {% endblock %}
+</div>
