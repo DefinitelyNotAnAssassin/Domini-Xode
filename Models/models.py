@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from markdownx.models import MarkdownxField
+from Articles.utils import send_newsletter  
 
 class Account(AbstractUser):
     """
@@ -63,10 +64,18 @@ class Announcements(models.Model):
     content = MarkdownxField(max_length=10000)
     description = models.CharField(max_length=255, default="Description")
     date = models.DateTimeField(default=timezone.now)
+    broadcast_newsletter = models.BooleanField(default=False)
     thumbnail = models.ImageField(null=True, blank=True, default  = '/domini_xode_logo.jpg', upload_to='static/')
 
     def __str__(self):
         return f"{self.title} | {self.author}"
+    
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super(Announcements, self).save(*args, **kwargs)
+
+        if self.broadcast_newsletter and is_new:
+            send_newsletter(self)
 
 
 class Messages(models.Model):

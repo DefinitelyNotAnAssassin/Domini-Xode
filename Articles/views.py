@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404 
+from django.contrib import messages 
+from django.contrib.auth.decorators import login_required 
+from django.db import IntegrityError
 from Models.models import Announcements 
 from Articles.forms import ArticleForm 
+from Articles.models import NewsletterMembers
 from markdownx.utils import markdownify 
-from django.contrib.auth.decorators import login_required 
 from UserInterface.views import get_referer 
-import unmarkd
 
-# Create your views here.
 
 
 
@@ -76,4 +77,29 @@ def add_article(request):
         payload = request.POST
         new_article = Announcements(title=payload['title'], author=request.user, content=payload['content'])
         new_article.save()
+        return redirect('articles')
+    
+    
+def subscribe_newsletter(request):
+    """
+    Renders a page for subscribing to the newsletter.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: Rendered "subscribe newsletter" page.
+    """
+    
+    if request.method == 'POST':
+        data = request.POST
+        new_member = NewsletterMembers(email=data['email']) 
+        try:
+            new_member.save() 
+        except IntegrityError as e: 
+            messages.warning(request, "You are already subscribed to the newsletter.")
+            return redirect('articles') 
+        
+        messages.success(request, "You have successfully subscribed to the newsletter.")
+        
         return redirect('articles')
