@@ -1,4 +1,4 @@
-document.getElementById("upload").addEventListener("change", handleImageUpload);
+document.getElementById("generate").addEventListener("click", handleImageUpload);
 document.getElementById("download").addEventListener("click", downloadImage);
 
 const canvas = document.getElementById("canvas");
@@ -8,6 +8,8 @@ function handleImageUpload(event) {
     const year_level = document.getElementById("year_level").value;
     const emotion = document.getElementById("emotion").value;
     const resolution = document.getElementById("resolution").value;
+    const file = document.getElementById("upload").files[0];
+    
 
     const convertedResolution = resolution.split("x");
     const width = parseInt(convertedResolution[0]);
@@ -16,7 +18,13 @@ function handleImageUpload(event) {
     console.log("Width: " + width);
     console.log("Height: " + height);
 
-    // Check if year_level and emotion is empty
+
+    if (!file) {
+        alert("Please upload an image");
+        return;
+    }
+
+
     if (year_level == "" || emotion == "" || resolution == "") {
         alert("Please select year level, emotion and resolution");
         return;
@@ -66,7 +74,7 @@ function handleImageUpload(event) {
             };
             img.src = e.target.result;
         };
-        reader.readAsDataURL(event.target.files[0]);
+        reader.readAsDataURL(file);
     };
 
     frame.onerror = function () {
