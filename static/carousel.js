@@ -20,7 +20,7 @@ const InstantiateCarousel = () =>{
     // options with default values
     const options = {
         defaultPosition: 0,
-        interval: 3000,
+        interval: 7000,
 
         indicators: {
             activeClasses: 'bg-white dark:bg-gray-800',
@@ -69,6 +69,7 @@ const InstantiateCarousel = () =>{
     const $prevButton = document.getElementById('data-carousel-prev');
     const $nextButton = document.getElementById('data-carousel-next');
 
+    carousel.cycle();
     $prevButton.addEventListener('click', () => {
         carousel.prev();
     });
@@ -81,5 +82,9 @@ const InstantiateCarousel = () =>{
 InstantiateCarousel();
 
 htmx.onLoad(()=>{
-    InstantiateCarousel();
+    if(document.getElementById('carousel-example'))
+    {
+        InstantiateCarousel();
+    }
+  
 })

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Contact.apps.ContactConfig',
     'About.apps.AboutConfig',
     'Articles.apps.ArticlesConfig',
+    'FrameMaker.apps.FramemakerConfig',
     'UserAuthentication.apps.UserauthenticationConfig',
     'API.apps.ApiConfig',
     'Models.apps.ModelsConfig',

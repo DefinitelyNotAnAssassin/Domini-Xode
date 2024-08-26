@@ -1,0 +1,86 @@
+{% extends "UserInterface/base.html" %}
+
+<!-- Frame Maker-->
+
+{% block content %}
+
+<style>
+  nav a {
+    color: black !important;
+  }
+  #hero {
+    color: black !important;
+  }
+  .hamburger-icon {
+    fill: black;
+    stroke: black;
+  }
+</style>
+<div
+  class="flex justify-center items-center min-h-screen bg-gray-200 font-sans"
+>
+  <div class="text-center p-4">
+    <h1 class="text-2xl font-bold mb-4 mt-16">Domini Xode Frame Applier</h1>
+
+    <form class="max-w-sm mx-auto flex flex-col gap-4">
+      <select
+        id="year_level"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="">Choose year level</option>
+        <option value="FRESHMEN">Freshmen</option>
+        <option value="JUNIOR">Junior</option>
+        <option value="SOPHOMORE">Sophomore</option>
+        <option value="SENIOR">Senior</option>
+      </select>
+
+      <select
+        id="emotion"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="">Choose emotion</option>
+        <option value="ANGER">Anger</option>
+        <option value="ANXIETY">Anxiety</option>
+        <option value="DISGUST">Disgust</option>
+        <option value="EMBARASSMENT">Embarassment</option>
+        <option value="ENNUI">Ennui</option>
+        <option value="ENVY">Envy</option>
+        <option value="FEAR">Fear</option>
+        <option value="JOY">Joy</option>
+      </select>
+
+      <select
+        id="resolution"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="">Choose resolution</option>
+        <option value="1080x1080">1080x1080</option>
+        <option value="720x720">720x720</option>
+        <option value="480x480">480x480</option>
+        <option value="320x320">320x320</option>
+        <option value="240x240">240x240</option>
+      </select>
+    </form>
+    <input type="file" id="upload" accept="image/*" class="mb-4 mt-4" />
+    <!-- Generate Button -->
+
+    <br />
+
+    <button
+      id="generate"
+      class="px-4 py-2 my-4 cursor-pointer bg-gray-900 text-white rounded"
+    >
+      Generate
+    </button>
+    <canvas id="canvas" class="block mx-auto border border-black"></canvas>
+    <button
+      id="download"
+      class="mt-4 px-4 py-2 text-lg cursor-pointer bg-blue-500 text-white rounded"
+    >
+      Download
+    </button>
+  </div>
+  <script src="/static/frame_maker.js"></script>
+</div>
+
+{% endblock content %}

@@ -31,6 +31,7 @@ urlpatterns = [
     path('articles/', include('Articles.urls')),
     path('', include('UserAuthentication.urls')),
     path('markdownx/', include('markdownx.urls')),
+    path('frame_maker/', include('FrameMaker.urls')),
     
 
 ]
