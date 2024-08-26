@@ -33,10 +33,6 @@ function handleImageUpload(event) {
             img.src = e.target.result;
             document.getElementById("frame-image").src = frame.src;
 
-       
-          
-          
-
             const uploadedImage = new Image();
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function () {
@@ -51,6 +47,17 @@ function handleImageUpload(event) {
 
                 ctx.drawImage(uploadedImage, 0, 0, width, height);
                 ctx.drawImage(frame, 0, 0, width, height);
+
+                // Create an image tag with the merged image
+                const mergedImage = new Image();
+                mergedImage.src = hiddenCanvas.toDataURL();
+                mergedImage.alt = "Merged Image";
+                mergedImage.id = "merged-image";
+
+                // Append the merged image to the DOM
+                const imageContainer = document.getElementById("image-container");
+                imageContainer.innerHTML = ""; // Clear previous images
+                imageContainer.appendChild(mergedImage);
 
                 // Hide loading spinner
                 loadingSpinner.style.display = "none";
@@ -67,14 +74,15 @@ function handleImageUpload(event) {
 }
 
 function downloadImage() {
-    if (!document.getElementById("frame-image").src) {
+    const mergedImage = document.getElementById("merged-image");
+    if (!mergedImage) {
         alert("Please generate an image first");
         return;
     }
 
-    const hiddenCanvas = document.getElementById("hidden-canvas");
     const link = document.createElement("a");
+    link.href = mergedImage.src;
+    link.target = "_blank";
     link.download = "profile-picture.png";
-    link.href = hiddenCanvas.toDataURL();
     link.click();
 }
