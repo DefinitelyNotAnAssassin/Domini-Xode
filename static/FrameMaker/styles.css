@@ -39,3 +39,10 @@ nav a {
 #hidden-canvas {
     display: none;
 }
+
+
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
+    .desktop-only {
+        display: none;
+    }
+}
