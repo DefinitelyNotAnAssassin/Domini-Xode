@@ -2,8 +2,10 @@ document.getElementById("generate").addEventListener("click", handleImageUpload)
 document.getElementById("download").addEventListener("click", downloadImage);
 
 function handleImageUpload(event) {
+    const loadingContainer = document.getElementById("loading");
     const loadingSpinner = document.getElementById("loading-spinner");
     loadingSpinner.style.display = "block";
+    loadingContainer.style.display = "flex";
 
     const year_level = document.getElementById("year_level").value;
     const emotion = document.getElementById("emotion").value;
@@ -11,12 +13,14 @@ function handleImageUpload(event) {
     const file = document.getElementById("upload").files[0];
 
     if (!file) {
+        loadingContainer.style.display = "none";
         loadingSpinner.style.display = "none";
         alert("Please upload an image");
         return;
     }
 
     if (year_level == "" || emotion == "") {
+        loadingContainer.style.display = "none";
         loadingSpinner.style.display = "none";
         alert("Please select year level and emotion");
         return;
@@ -29,10 +33,6 @@ function handleImageUpload(event) {
 
         const reader = new FileReader();
         reader.onload = function (e) {
-            const img = document.getElementById("uploaded-image");
-            img.src = e.target.result;
-            document.getElementById("frame-image").src = frame.src;
-
             const uploadedImage = new Image();
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function () {
@@ -60,6 +60,7 @@ function handleImageUpload(event) {
                 imageContainer.appendChild(mergedImage);
 
                 // Hide loading spinner
+                loadingContainer.style.display = "none";
                 loadingSpinner.style.display = "none";
             };
         };
@@ -68,6 +69,7 @@ function handleImageUpload(event) {
 
     frame.onerror = function () {
         console.error("Failed to load frame image");
+        loadingContainer.style.display = "none";
         loadingSpinner.style.display = "none";
         alert("Failed to load frame image. Please check the year level and emotion.");
     };
