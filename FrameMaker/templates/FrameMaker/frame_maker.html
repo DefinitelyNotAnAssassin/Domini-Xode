@@ -85,6 +85,19 @@
 
   <div class="loading-spinner" id="loading-spinner"></div>
   <script src="/static/FrameMaker/frame_maker.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var isIOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+      if (isIOS) {
+        var elements = document.querySelectorAll(".desktop-only")
+        elements.forEach(function (element) {
+          element.remove()
+        })
+      }
+    })
+  </script>
 </div>
 
 {% endblock content %}
