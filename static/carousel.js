@@ -1,3 +1,5 @@
+
+
 const InstantiateCarousel = () =>{ 
     const carouselElement = document.getElementById('carousel-example');
 
@@ -64,6 +66,8 @@ const InstantiateCarousel = () =>{
 
 
 
+
+
     const carousel = new Carousel(carouselElement, items, options, instanceOptions);
 
     const $prevButton = document.getElementById('data-carousel-prev');
@@ -88,3 +92,6 @@ htmx.onLoad(()=>{
     }
   
 })
+
+
+

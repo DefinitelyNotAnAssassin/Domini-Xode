@@ -1,8 +1,10 @@
 // main.js
 import { InstantiateCarousel } from './carousel.js';
 
+
 document.addEventListener('DOMContentLoaded', () => {
     InstantiateCarousel();
+   
 });
 
 htmx.onLoad(() => {

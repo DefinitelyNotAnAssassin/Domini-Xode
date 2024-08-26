@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
-from Models.models import * 
-from UserInterface.forms import TTSForm
+from django.template import loader
 from django.contrib.auth import login as login_user
 from django.contrib.auth import authenticate
 from django.views.decorators.cache import cache_page
+from Models.models import * 
+from UserInterface.forms import TTSForm
 import openai
 import json
 import environ
@@ -37,9 +38,9 @@ def index(request):
         HttpResponse: Rendered index page.
     """
     if get_referer(request):
-        return render(request, 'UserInterface/partition/index.html')
+        return render(request, 'UserInterface/partition/index.html', content_type = 'text/html')
     else:
-        return render(request, 'UserInterface/index.html')
+        return render(request, 'UserInterface/index.html', content_type = 'text/html')
 
 
 
