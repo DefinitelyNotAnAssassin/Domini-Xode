@@ -4,18 +4,9 @@
 
 {% block content %}
 
-<style>
-  nav a {
-    color: black !important;
-  }
-  #hero {
-    color: black !important;
-  }
-  .hamburger-icon {
-    fill: black;
-    stroke: black;
-  }
-</style>
+<link rel="stylesheet" href="/static/FrameMaker/styles.css" />
+<link rel="stylesheet" href="/static/FrameMaker/spinner.css" />
+
 <div
   class="flex justify-center items-center min-h-screen bg-gray-200 font-sans"
 >
@@ -49,6 +40,18 @@
         <option value="FEAR">Fear</option>
         <option value="JOY">Joy</option>
       </select>
+
+      <select
+        id="resolution"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="">Choose resolution</option>
+        <option value="1080x1080">1080x1080</option>
+        <option value="720x720">720x720</option>
+        <option value="480x480">480x480</option>
+        <option value="320x320">320x320</option>
+        <option value="240x240">240x240</option>
+      </select>
     </form>
     <input type="file" id="upload" accept="image/*" class="mb-4 mt-4" />
     <!-- Generate Button -->
@@ -62,11 +65,15 @@
       Generate
     </button>
 
-    <div class="w-full flex items-center justify-center overflow-x-auto">
-      <div class="canvas-container">
-        <canvas id="canvas"></canvas>
-      </div>
+    <div
+      class="relative h-[360px] w-[360px] md:w-[480px] md:h-[480px] border border-black"
+      id="image-container"
+    >
+      <img id="uploaded-image" class="absolute uploaded-image" />
+      <img id="frame-image" class="absolute frame-image" />
     </div>
+
+    <canvas class="hidden" id="hidden-canvas"></canvas>
 
     <button
       id="download"
@@ -75,7 +82,9 @@
       Download
     </button>
   </div>
-  <script src="/static/frame_maker.js"></script>
+
+  <div class="loading-spinner" id="loading-spinner"></div>
+  <script src="/static/FrameMaker/frame_maker.js"></script>
 </div>
 
 {% endblock content %}

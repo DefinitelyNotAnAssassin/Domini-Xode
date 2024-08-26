@@ -1,0 +1,41 @@
+/* styles.css */
+nav a {
+    color: black !important;
+}
+#hero {
+    color: black !important;
+}
+.hamburger-icon {
+    fill: black;
+    stroke: black;
+}
+
+.uploaded-image,
+.frame-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+}
+
+.uploaded-image,
+.frame-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#hidden-canvas {
+    display: none;
+}
