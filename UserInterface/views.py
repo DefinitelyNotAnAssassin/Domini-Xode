@@ -3,6 +3,7 @@ from Models.models import *
 from UserInterface.forms import TTSForm
 from django.contrib.auth import login as login_user
 from django.contrib.auth import authenticate
+from django.views.decorators.cache import cache_page
 import openai
 import json
 import environ
@@ -22,6 +23,9 @@ def get_referer(request):
     
     else:
         return True
+    
+    
+# @cache_page(60 * 60 * 24)
 def index(request):
     """
     Renders the index page.

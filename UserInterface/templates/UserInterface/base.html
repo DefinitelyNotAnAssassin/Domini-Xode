@@ -33,7 +33,7 @@
     />
     <meta
       property="twitter:description"
-      content="A Youth Tech Organization Based on St. Dominic College of Asia"
+      content="A Youth Tech Organization Based in St. Dominic College of Asia"
     />
     <meta
       property="twitter:image"
@@ -46,10 +46,9 @@
     <title>{% block title %} {% endblock %}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+   
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
 
 
@@ -113,7 +112,7 @@
 
 <nav class=" border-gray-200 z-40 bg-white/0  w-full absolute">
   <div class="max-w-screen-xl flex flex-wrap items-center w-full justify-between md:justify-start   mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse mr-20">
+    <a href="https://www.dominixode.org/" class="flex items-center space-x-3 rtl:space-x-reverse mr-20">
 
         <span class="self-center text-2xl font-semibold whitespace-nowrap text-white" id = "hero">Domini</span>
     </a>
@@ -127,6 +126,7 @@
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 bg-white md:bg-transparent rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  ">
         <li>
           <a 
+          href = "{% url 'index' %}"
           hx-get="{% url 'index' %}"
           hx-push-url="true"  
           hx-swap="innerHTML transition:true"
@@ -137,6 +137,7 @@
         </li>
         <li>
           <a      
+          href = "{% url 'articles' %}"
           hx-get="{% url 'articles' %}" 
           hx-push-url="true"
           hx-swap="transition:true"
@@ -145,6 +146,7 @@
         </li>
         <li>
           <a 
+          href = "{% url 'events' %}"
           hx-get="{% url 'events' %}" 
           hx-push-url="true"
           hx-swap="transition:true"
@@ -162,7 +164,7 @@
       <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
         <li>
           <a 
-          
+          href = "{% url 'yearlist' %}"
           hx-get="{% url 'yearlist' %}" 
           hx-push-url="true"
           hx-swap="transition:true"
@@ -170,14 +172,18 @@
           class="cursor-pointer block px-4 py-2 text-black">Domini Xode Officers</a>
         </li>
         <li>
-          <a hx-get="{% url 'testimonials' %}"
+          <a 
+          href = "{% url 'testimonials' %}"
+          hx-get="{% url 'testimonials' %}"
           hx-push-url="true"
           hx-swap="innerHTML transition:true"
           hx-target="#content" 
           class="cursor-pointer block px-4 py-2 text-black">Testimonies</a>
         </li>
         <li>
-          <a hx-get="{% url 'mission' %}"
+          <a 
+          href = "{% url 'mission' %}"
+          hx-get="{% url 'mission' %}"
           hx-push-url="true"
           hx-swap="innerHTML transition:true"
           hx-target="#content" 
@@ -192,6 +198,7 @@
         </li>
         <li>
           <a 
+          href = "{% url 'contact' %}"
           hx-get="{% url 'contact' %}" 
           hx-push-url="true"
           hx-swap="innerHTML transition:true"
@@ -210,19 +217,14 @@
   <body class="bodyContainer">
     <div id="content">{% block content %} {% endblock %}</div>
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-      rel="stylesheet"
-    />
+
 
    
     {% block script %} {% endblock %}
 
 
-
+    <script async  src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <script async  src="https://unpkg.com/htmx.org@1.9.6"></script>
+    
   </body>
 </html>

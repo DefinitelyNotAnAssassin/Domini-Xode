@@ -47,6 +47,7 @@ Domini Xode {% endblock title %} {% load static %} {% block head %}
         src="/static/domini_xode_logo.jpg"
         class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
         alt="Domini Xode Logo"
+        carousel-lazy="true"
       />
     </div>
     <!-- Item 2 -->
@@ -69,9 +70,10 @@ Domini Xode {% endblock title %} {% load static %} {% block head %}
         </div>
       </div>
       <img
-        src="/static/domini_xode_outreach.jpg"
+        data-src="/static/domini_xode_outreach.jpg"
         class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
         alt="A picture of Domini Xode Outreach Program"
+        carousel-lazy="true"
       />
     </div>
     <!-- Item 3 -->
@@ -94,9 +96,10 @@ Domini Xode {% endblock title %} {% load static %} {% block head %}
         </div>
       </div>
       <img
-        src="/static/domini_xode_event.jpg"
+        data-src="/static/domini_xode_event.jpg"
         class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
         alt="An image containing Domini Xode Events and Activities"
+        carousel-lazy="true"
       />
     </div>
   </div>
@@ -131,6 +134,7 @@ Domini Xode {% endblock title %} {% load static %} {% block head %}
     id="data-carousel-prev"
     type="button"
     class="group absolute left-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+    aria-label="Previous"
   >
     <span
       class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
@@ -157,6 +161,7 @@ Domini Xode {% endblock title %} {% load static %} {% block head %}
     id="data-carousel-next"
     type="button"
     class="group absolute right-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+    aria-label="Next"
   >
     <span
       class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
@@ -181,5 +186,5 @@ Domini Xode {% endblock title %} {% load static %} {% block head %}
   </button>
 </div>
 
-<script src="/static/carousel.js" type="module"></script>
+<script src="/static/carousel/main.js" type="module"></script>
 {% endblock content %}

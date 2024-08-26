@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404 
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required 
+from django.views.decorators.cache import cache_page    
 from django.db import IntegrityError
 from Models.models import Announcements 
 from Articles.forms import ArticleForm 
@@ -12,6 +13,7 @@ from UserInterface.views import get_referer
 
 
 
+#@cache_page(60 * 60 *  3)
 def articles(request):
     """
     Renders a page displaying a list of articles.
