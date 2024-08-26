@@ -55,7 +55,7 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
         <option selected value="">Choose size:</option>
-
+        <option value="1080x1080">1080x1080</option>
         <option value="720x720">720x720</option>
         <option value="480x480">480x480</option>
         <option value="320x320">320x320</option>
@@ -73,10 +73,14 @@
     >
       Generate
     </button>
-    <canvas
-      id="canvas"
-      class="block mx-w-1/2 max-h-1/2 mx-auto border border-black"
-    ></canvas>
+
+    <div class="w-full flex items-center justify-center overflow-x-auto">
+      <div class="canvas-container">
+        <canvas id="preview-canvas" width="480" height="480"></canvas>
+        <canvas id="canvas" class="hidden"></canvas>
+      </div>
+    </div>
+
     <button
       id="download"
       class="mt-4 px-4 py-2 text-lg cursor-pointer bg-blue-500 text-white rounded"
