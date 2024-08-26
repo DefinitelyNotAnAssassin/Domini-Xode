@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /media/
+Disallow: /static/
+Allow: /
+
+Sitemap: https://www.dominixode.org/sitemap.xml
