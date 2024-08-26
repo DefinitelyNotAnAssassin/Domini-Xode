@@ -2,22 +2,23 @@ document.getElementById("generate").addEventListener("click", handleImageUpload)
 document.getElementById("download").addEventListener("click", downloadImage);
 
 function handleImageUpload(event) {
+    const loadingSpinner = document.getElementById("loading-spinner");
+    loadingSpinner.style.display = "block";
+
     const year_level = document.getElementById("year_level").value;
     const emotion = document.getElementById("emotion").value;
-    const resolution = document.getElementById("resolution").value;
-    const convertedResolution = resolution.split("x");
-    const width = parseInt(convertedResolution[0]);
-    const height = parseInt(convertedResolution[1]);
 
     const file = document.getElementById("upload").files[0];
 
     if (!file) {
+        loadingSpinner.style.display = "none";
         alert("Please upload an image");
         return;
     }
 
-    if (year_level == "" || emotion == "" || resolution == "") {
-        alert("Please select year level, emotion, and resolution");
+    if (year_level == "" || emotion == "") {
+        loadingSpinner.style.display = "none";
+        alert("Please select year level and emotion");
         return;
     }
 
@@ -32,19 +33,22 @@ function handleImageUpload(event) {
             img.src = e.target.result;
             document.getElementById("frame-image").src = frame.src;
 
-            // Show loading spinner
-            const loadingSpinner = document.getElementById("loading-spinner");
-            loadingSpinner.style.display = "block";
-
-            // Draw on hidden canvas
-            const hiddenCanvas = document.getElementById("hidden-canvas");
-            hiddenCanvas.width = width;
-            hiddenCanvas.height = height;
-            const ctx = hiddenCanvas.getContext("2d");
+       
+          
+          
 
             const uploadedImage = new Image();
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function () {
+                const width = uploadedImage.width;
+                const height = uploadedImage.height;
+
+                // Draw on hidden canvas
+                const hiddenCanvas = document.getElementById("hidden-canvas");
+                hiddenCanvas.width = width;
+                hiddenCanvas.height = height;
+                const ctx = hiddenCanvas.getContext("2d");
+
                 ctx.drawImage(uploadedImage, 0, 0, width, height);
                 ctx.drawImage(frame, 0, 0, width, height);
 
@@ -57,6 +61,7 @@ function handleImageUpload(event) {
 
     frame.onerror = function () {
         console.error("Failed to load frame image");
+        loadingSpinner.style.display = "none";
         alert("Failed to load frame image. Please check the year level and emotion.");
     };
 }
