@@ -1,45 +1,48 @@
 {% extends 'UserInterface/base.html' %}
 
-
-{% block title %} Login Page {% endblock title %} 
-
-
-{% block content %} 
+<!-- Block -->
+{% block title %} Login Page {% endblock title %} {% block content %}
 <style>
+  a {
+    color: black !important;
+  }
+</style>
 
-   a{
-     color: black !important;
-   }
-</style> 
-<div class ="d-flex flex-column min-vh-100 justify-content-center align-items-center">  
-    <form action = "/login" method = "post">
-        {% csrf_token %}
-     <div class="form-row align-items-center">
-        <h3 class="font-monospace">Login Page</h3>
+<div class="flex flex-col min-h-screen justify-center items-center">
+  <form action="/login" method="post">
+    {% csrf_token %}
+    <div class="grid grid-cols-1 gap-2">
+      <h3 class="font-mono">Login Page</h3>
 
-  
-       <div class="col-md-12 mb-2">
-            <input type="text" name="username" id="" class="form-control" placeholder="Username">
-       </div>
-       
-       <div class = "col-md-12 mb-1">
-            <input type="password" name="password" id="" class="form-control" placeholder="Password">
-           <small class="text-muted">  Not yet registered? Click <a href="/register?next={{next}}">here</a></small>
-        </div>
+      <div class="col-span-1">
+        <input
+          type="text"
+          name="username"
+          id=""
+          class="form-input"
+          placeholder="Username"
+        />
+      </div>
 
+      <div class="col-span-1">
+        <input
+          type="password"
+          name="password"
+          id=""
+          class="form-input"
+          placeholder="Password"
+        />
+        <small class="text-gray-500"
+          >Not yet registered? Click
+          <a href="/register?next={{next}}">here</a></small
+        >
+      </div>
 
-        <div class = "col-md-12 mb-4">
-     
-         <button type="submit" class="btn btn-primary col-12 mt-2">Sign In</button>
-        </div>
-        
-       
-
-    
-   
-   </div>
-   </form>
-   </div>
-
+      <div class="col-span-1">
+        <button type="submit" class="btn-primary w-full mt-2">Sign In</button>
+      </div>
+    </div>
+  </form>
+</div>
 
 {% endblock content %}
