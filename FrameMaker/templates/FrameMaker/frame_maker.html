@@ -18,11 +18,15 @@
         id="year_level"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
+        {% if request.user.is_authenticated %}
+        <option value="OFFICER">Officer</option>
+        {% else %}
         <option selected value="">Choose year level</option>
         <option value="FRESHMEN">Freshmen</option>
         <option value="SOPHOMORE">Sophomore</option>
         <option value="JUNIOR">Junior</option>
         <option value="SENIOR">Senior</option>
+        {% endif %}
       </select>
 
       <label for="emotion">Choose your emotion for this academic year!</label>
@@ -30,6 +34,28 @@
         id="emotion"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
+        {% if request.user.is_authenticated %}
+        <option selected value="">Choose position</option>
+        <option value="1">1st Year Representative</option>
+        <option value="2">2nd Year Representative</option>
+        <option value="3">3rd Year Representative</option>
+        <option value="4">4th Year Representative</option>
+        <option value="ASS. AUD">Assistant Auditor</option>
+        <option value="ASS. SEC">Assistant Secretary</option>
+        <option value="AUD">Auditor</option>
+        <option value="DOCU">Documentation</option>
+        <option value="DMO">Digital Media Officer</option>
+        <option value="EM">Events Manager</option>
+        <option value="EVP">External Vice President</option>
+        <option value="iVP">Internal Vice President</option>
+        <option value="OPD">Outreach Program Director</option>
+        <option value="PIO">Public Information Officer</option>
+        <option value="PRE">President</option>
+        <option value="SEC">Secretary</option>
+        <option value="TECH">Technical</option>
+        <option value="TREA">Treasurer</option>
+
+        {% else %}
         <option selected value="">Choose emotion</option>
         <option value="ANGER">Anger</option>
         <option value="ANXIETY">Anxiety</option>
@@ -40,6 +66,7 @@
         <option value="FEAR">Fear</option>
         <option value="JOY">Joy</option>
         <option value="SADNESS">Sadness</option>
+        {% endif %}
       </select>
 
       <select
