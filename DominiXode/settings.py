@@ -32,7 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['tdc.pythonanywhere.com',
                 'www.dominixode.org',
                 '127.0.0.1',
-                '192.168.1.9']
+                '192.168.1.9',
+                '192.168.0.122']
 
 
 # Application definition
