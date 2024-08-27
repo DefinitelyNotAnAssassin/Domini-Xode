@@ -9,6 +9,7 @@ function handleImageUpload(event) {
 
     const year_level = document.getElementById("year_level").value;
     const emotion = document.getElementById("emotion").value;
+    const resolution = document.getElementById("resolution").value;
 
     const file = document.getElementById("upload").files[0];
 
@@ -19,7 +20,7 @@ function handleImageUpload(event) {
         return;
     }
 
-    if (year_level == "" || emotion == "") {
+    if (year_level === "" || emotion === "") {
         loadingContainer.style.display = "none";
         loadingSpinner.style.display = "none";
         alert("Please select year level and emotion");
@@ -36,8 +37,14 @@ function handleImageUpload(event) {
             const uploadedImage = new Image();
             uploadedImage.src = e.target.result;
             uploadedImage.onload = function () {
-                const width = uploadedImage.width;
-                const height = uploadedImage.height;
+                let width, height;
+
+                if (resolution === "original") {
+                    width = uploadedImage.width;
+                    height = uploadedImage.height;
+                } else {
+                    [width, height] = resolution.split('x').map(Number);
+                }
 
                 // Draw on hidden canvas
                 const hiddenCanvas = document.getElementById("hidden-canvas");
@@ -45,7 +52,9 @@ function handleImageUpload(event) {
                 hiddenCanvas.height = height;
                 const ctx = hiddenCanvas.getContext("2d");
 
+                // Scale and draw the uploaded image
                 ctx.drawImage(uploadedImage, 0, 0, width, height);
+                // Scale and draw the frame
                 ctx.drawImage(frame, 0, 0, width, height);
 
                 // Create an image tag with the merged image

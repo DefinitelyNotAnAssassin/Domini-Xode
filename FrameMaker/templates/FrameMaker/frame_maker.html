@@ -11,7 +11,7 @@
   class="flex justify-center items-center min-h-screen bg-gray-200 font-sans"
 >
   <div class="text-center p-4">
-    <h1 class="text-2xl font-bold mb-4 mt-16">Domini Xode Frame Applier</h1>
+    <h1 class="text-2xl font-bold mb-4 mt-24">Domini Xode Frame Applier</h1>
 
     <form class="max-w-sm mx-auto flex flex-col gap-4">
       <select
@@ -40,7 +40,20 @@
         <option value="FEAR">Fear</option>
         <option value="JOY">Joy</option>
       </select>
+
+      <select
+        id="resolution"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="original">Original Size</option>
+        <option value="1080x1080" class="desktop-only">1080x1080</option>
+        <option value="720x720">720x720</option>
+        <option value="480x480">480x480</option>
+        <option value="320x320">320x320</option>
+        <option value="240x240">240x240</option>
+      </select>
     </form>
+
     <input type="file" id="upload" accept="image/*" class="mb-4 mt-4" />
     <!-- Generate Button -->
 
