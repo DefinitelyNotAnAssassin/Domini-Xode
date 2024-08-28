@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'About.apps.AboutConfig',
     'Articles.apps.ArticlesConfig',
     'FrameMaker.apps.FramemakerConfig',
+    'NavigationBar.apps.NavigationbarConfig',
     'UserAuthentication.apps.UserauthenticationConfig',
     'API.apps.ApiConfig',
     'Models.apps.ModelsConfig',
