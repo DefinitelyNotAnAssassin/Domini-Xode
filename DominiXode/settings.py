@@ -36,11 +36,19 @@ ALLOWED_HOSTS = ['tdc.pythonanywhere.com',
                 '192.168.0.122']
 
 
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
     'unfold',
     'markdownx',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
     'Events.apps.EventsConfig',
     'Contact.apps.ContactConfig',
     'About.apps.AboutConfig',
@@ -65,6 +73,8 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -182,3 +192,5 @@ EMAIL_USE_SSL = False
 
 MARKDOWNX_EDITOR_RESIZABLE = False
 
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

@@ -2,13 +2,16 @@
 import { InstantiateCarousel } from './carousel.js';
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    InstantiateCarousel();
-   
-});
+const loadScripts = (url, callback) => { 
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    script.onload = callback;
+    document.body.appendChild(script);
 
-htmx.onLoad(() => {
-    if (document.getElementById('carousel-example')) {
-        InstantiateCarousel();
-    }
+}
+
+
+loadScripts('https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js', () => {
+    InstantiateCarousel();
 });

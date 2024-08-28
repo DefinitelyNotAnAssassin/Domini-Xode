@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A Youth Tech Organization Based in St. Dominic College of Asia, dedicated to fostering technological skills and innovation among students. Join us to explore, learn, and grow in the field of technology." />
+    <meta name="author" content="Winmari Manzano" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.dominixode.org/" />
+    <meta property="og:title" content=" The Dominican Code | Domini Xode  " />
+    <meta name="keywords" content="Youth Tech, St. Dominic College of Asia, Technology, Organization, Domini Xode, IT Org" />
+    <meta
+      property="og:description"
+      content="A Youth Tech Organization Based in St. Dominic College of Asia"
+    />
+    <meta
+      property="og:image"
+      content="https://www.dominixode.org/static/domini_xode_logo.jpg"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.dominixode.org/static/domini_xode_logo.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.dominixode.org/" />
+    <meta
+      property="twitter:title"
+      content=" The Dominican Code | Domini Xode  "
+    />
+    <meta
+      property="twitter:description"
+      content="A Youth Tech Organization Based in St. Dominic College of Asia"
+    />
+    <meta
+      property="twitter:image"
+      content="https://www.dominixode.org/static/domini_xode_logo.jpg"
+    />
+
+    <!-- Meta Tags Generated with https://metatags.io -->
+
+    <link rel="icon" type="image/x-icon" href="/static/domini_xode_logo.jpg" />
+    <title>{% block title %} {% endblock %}</title>
+
+
+    {% load static tailwind_tags %}
+    {% tailwind_css %}
+
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" media = "all"/>
+   
+    
+    <script async  src="https://unpkg.com/htmx.org@1.9.6" defer></script>
+
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Domini Xode",
+        "url": "https://www.dominixode.org",
+        "logo": "https://www.dominixode.org/static/domini_xode_logo.jpg",
+        "sameAs": [
+          "https://www.facebook.com/sdcadominixode",
+          "https://www.instagram.com/sdcadominixode"
+        ]
+      }
+      </script>
+    {% load static %}
+
+
+    {% if messages %}
+      {% for message in messages %}
+
+      <div id="alert-1" class="flex items-center p-4 mb-4  z-40 w-full   
+      
+      {% if message.tags == 'error' %}
+        text-red-800
+        bg-red-50
+      {% elif message.tags == 'warning' %}
+        text-yellow-800
+        bg-yellow-50
+      {% elif message.tags == 'success' %}
+        text-green-800
+        bg-green-50
+      {% else %}
+        text-blue-800
+        bg-blue-50
+      {% endif %} 
+      
+      rounded-lg " role="alert">
+   
+        <div class="ms-3 text-sm font-medium">
+          {{ message }}
+        </div>
+          <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-1" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %} 
+
+
+    {% block head %} {% endblock %}
+
+    <!-- Notification-->
+   
+
+ 
+
+<nav class=" border-gray-200 z-40 bg-white/0  w-full absolute">
+  <div class="max-w-screen-xl flex flex-wrap items-center w-full justify-between md:justify-start   mx-auto p-4">
+    <a href="https://www.dominixode.org/" class="flex items-center space-x-3 rtl:space-x-reverse mr-20">
+
+        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white" id = "hero">Domini</span>
+    </a>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5 hamburger-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14">
+            <path  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 bg-white md:bg-transparent rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  ">
+        <li>
+          <a 
+          href = "{% url 'index' %}"
+          hx-get="{% url 'index' %}"
+          hx-push-url="true"  
+          hx-swap="innerHTML transition:true"
+          hx-target = "#content"
+          
+          
+          class="cursor-pointer block py-2 px-3 text-black md:text-white  rounded   md:p-0" aria-current="page">Home</a>
+        </li>
+        <li>
+          <a      
+          href = "{% url 'articles' %}"
+          hx-get="{% url 'articles' %}" 
+          hx-push-url="true"
+          hx-swap="transition:true"
+          hx-target = "#content"
+           class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0  md:p-0 ">Articles</a>
+        </li>
+        <li>
+          <a 
+          href = "{% url 'events' %}"
+          hx-get="{% url 'events' %}" 
+          hx-push-url="true"
+          hx-swap="transition:true"
+          hx-target = "#content" class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 ">Events</a>
+        </li>
+        <li>
+          
+<a id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 inline-flex items-center" type="button">About Us <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+  </svg>
+  </a>
+  
+  <!-- Dropdown menu -->
+  <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+        <li>
+          <a 
+          href = "{% url 'yearlist' %}"
+          hx-get="{% url 'yearlist' %}" 
+          hx-push-url="true"
+          hx-swap="transition:true"
+          hx-target = "#content"
+          class="cursor-pointer block px-4 py-2 text-black">Domini Xode Officers</a>
+        </li>
+        <li>
+          <a 
+          href = "{% url 'testimonials' %}"
+          hx-get="{% url 'testimonials' %}"
+          hx-push-url="true"
+          hx-swap="innerHTML transition:true"
+          hx-target="#content" 
+          class="cursor-pointer block px-4 py-2 text-black">Testimonies</a>
+        </li>
+        <li>
+          <a 
+          href = "{% url 'mission' %}"
+          hx-get="{% url 'mission' %}"
+          hx-push-url="true"
+          hx-swap="innerHTML transition:true"
+          hx-target="#content" 
+          class="cursor-pointer block px-4 py-2 text-black">Domini Xode Mission </a>
+        </li>
+        
+        <li>
+
+        </li>
+      </ul>
+  </div>
+  
+        </li>
+        <li>
+          <a 
+          href = "{% url 'contact' %}"
+          hx-get="{% url 'contact' %}" 
+          hx-push-url="true"
+          hx-swap="innerHTML transition:true"
+          hx-target = "#content"
+        
+          class="cursor-pointer block py-2 px-3 text-black md:text-white rounded  md:border-0 md:hover:text-blue-700 md:p-0 ">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  
+
+  <body class="bodyContainer">
+    <div id="content">{% block content %} {% endblock %}</div>
+
+
+
+   
+    {% block script %} {% endblock %}
+
+    
+  </body>
+</html>
