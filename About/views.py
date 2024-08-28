@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from About.models import Year, Officer
-from UserInterface.views import get_referer
+from LandingPage.views import get_referer
 
 
 def about_us(request):

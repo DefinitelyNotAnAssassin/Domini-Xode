@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'UserAuthentication.apps.UserauthenticationConfig',
     'API.apps.ApiConfig',
     'Models.apps.ModelsConfig',
-    'UserInterface.apps.UserinterfaceConfig',
+    'LandingPage.apps.LandingPageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

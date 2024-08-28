@@ -1,0 +1,41 @@
+{% extends 'LandingPage/base.html' %} {% block content %}
+<style>
+  .codeblock {
+    width: 48vw;
+    height: 75vh;
+  }
+  .code {
+    width: 50vw;
+    height: 75vh;
+    overflow-y: scroll;
+    tab-size: 4;
+  }
+</style>
+
+<div
+  class="d-flex flex-column min-vh-100 justify-content-center align-items-center"
+>
+  <form
+    class="form-row align-items-center index_title"
+    hx-post="upload_file"
+    enctype="multipart/form-data"
+    hx-target=".codeblock"
+  >
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-6 mb-2">
+        <div class="border code">{{form}}</div>
+      </div>
+      <div class="col-6 mb-2">
+        <p class="codeblock border" id="codeblock"></p>
+      </div>
+    </div>
+
+    <div class="col-md-12 mb-2 input-group">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-secondary">Transcribe IT</button>
+      </span>
+    </div>
+  </form>
+</div>
+{% endblock content %}

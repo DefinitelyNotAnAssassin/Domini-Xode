@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 from Models.models import Events
-from UserInterface.views import get_referer
+from LandingPage.views import get_referer
 # Create your views here.
 
 

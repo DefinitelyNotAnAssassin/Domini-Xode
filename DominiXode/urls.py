@@ -20,10 +20,10 @@ from django.conf.urls.static import static
 
 
 
-handler404 = 'UserInterface.views.bad_request'
+handler404 = 'LandingPage.views.bad_request'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('UserInterface.urls')),
+    path('', include('LandingPage.urls')),
     path('api/', include('API.urls')),
     path('', include('Events.urls')),
     path('', include('Contact.urls')),

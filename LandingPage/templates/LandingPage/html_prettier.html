@@ -1,0 +1,80 @@
+{% extends 'LandingPage/base.html' %} {% block content %}
+
+<style>
+  .codeblock {
+    width: 50vw;
+    height: 75vh;
+  }
+  textarea {
+    width: 50vw;
+    height: 75vh;
+    overflow-y: scroll;
+    tab-size: 4;
+  }
+</style>
+
+<div
+  class="d-flex flex-column min-vh-100 justify-content-center align-items-center"
+>
+  {% csrf_token %}
+  <div class="form-row align-items-center index_title">
+    <div class="row">
+      <div class="col-6 mb-2">
+        <form class="border">
+          <textarea id="code" name="code"></textarea>
+        </form>
+      </div>
+      <div class="col-6 mb-2">
+        <pre class="codeblock border" id="codeblock"></pre>
+      </div>
+    </div>
+
+    <div class="col-md-12 mb-2 input-group">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-secondary">Prettier</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<script type="module">
+  import * as prettier from "https://unpkg.com/prettier@3.0.3/standalone.mjs"
+  import prettierPluginHTML from "https://unpkg.com/prettier@3.0.3/plugins/html.mjs"
+  import prettierPluginBabel from "https://unpkg.com/prettier@3.0.3/plugins/babel.mjs"
+
+  var debounce = null
+
+  $("#code").on("keyup", async function () {
+    clearTimeout(debounce)
+    debounce = setTimeout(async function () {
+      const formatted = await prettier
+        .format(` ${$("#code").val()}`, {
+          parser: "html",
+          plugins: [prettierPluginHTML, prettierPluginBabel],
+          options: {
+            severity: "warn",
+          },
+        })
+        .catch((e) => {
+          $("#codeblock").text(e)
+        })
+      console.log(formatted)
+
+      $("#codeblock").text(formatted)
+    }, 500)
+  })
+
+  // Output: const html = /* HTML */ `<DIV> </DIV>`;
+
+  $("#code").on("keydown", function (event) {
+    if (event.keyCode === 9) {
+      // Tab key
+      event.preventDefault() // Prevent the default behavior
+
+      // Insert 4 spaces
+      document.execCommand("insertHtml", false, "&nbsp;&nbsp;&nbsp;&nbsp;")
+    }
+  })
+</script>

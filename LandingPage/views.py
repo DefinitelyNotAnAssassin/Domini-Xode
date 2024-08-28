@@ -4,7 +4,7 @@ from django.contrib.auth import login as login_user
 from django.contrib.auth import authenticate
 from django.views.decorators.cache import cache_page
 from Models.models import * 
-from UserInterface.forms import TTSForm
+from LandingPage.forms import TTSForm
 import openai
 import json
 import environ
@@ -38,25 +38,25 @@ def index(request):
         HttpResponse: Rendered index page.
     """
     if get_referer(request):
-        return render(request, 'UserInterface/partition/index.html', content_type = 'text/html')
+        return render(request, 'LandingPage/partition/index.html', content_type = 'text/html')
     else:
-        return render(request, 'UserInterface/index.html', content_type = 'text/html')
+        return render(request, 'LandingPage/index.html', content_type = 'text/html')
 
 
 
 def coding_ai(request):
     
     if get_referer(request):
-        return render(request, 'UserInterface/partition/coding_ai.html')
+        return render(request, 'LandingPage/partition/coding_ai.html')
     else:
-        return render(request, 'UserInterface/coding_ai.html')
+        return render(request, 'LandingPage/coding_ai.html')
 
 
 def html_prettier(request):
     if get_referer(request):
-        return render(request, 'UserInterface/partition/html_prettier.html')
+        return render(request, 'LandingPage/partition/html_prettier.html')
     else:
-        return render(request, 'UserInterface/html_prettier.html')
+        return render(request, 'LandingPage/html_prettier.html')
     
 def upload_file(request):
     if request.method == "GET":
@@ -64,9 +64,9 @@ def upload_file(request):
             'form': TTSForm(),
         }
         if get_referer(request):
-            return render(request, 'UserInterface/partition/TTS.html', context = items)
+            return render(request, 'LandingPage/partition/TTS.html', context = items)
         else:
-            return render(request, 'UserInterface/TTS.html', context = items)
+            return render(request, 'LandingPage/TTS.html', context = items)
     elif request.method == "POST":
         form =TTSForm(request.POST, request.FILES)
         if form.is_valid:

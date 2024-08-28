@@ -8,7 +8,7 @@ from Models.models import Announcements
 from Articles.forms import ArticleForm 
 from Articles.models import NewsletterMembers
 from markdownx.utils import markdownify 
-from UserInterface.views import get_referer 
+from LandingPage.views import get_referer 
 
 
 

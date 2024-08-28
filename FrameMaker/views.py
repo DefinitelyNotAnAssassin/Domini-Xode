@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from UserInterface.views import get_referer 
+from LandingPage.views import get_referer 
 # Create your views here.
 
 

@@ -11,7 +11,28 @@ const loadScripts = (url, callback) => {
 
 }
 
+const loadStyles = (url, callback) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = url;
+    link.onload = callback;
+    document.head.appendChild(link);
+}
 
-loadScripts('https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js', () => {
-    InstantiateCarousel();
+
+loadStyles('https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css', () => {
 });
+
+
+loadScripts('https://unpkg.com/htmx.org@1.9.6', () => {
+    loadScripts('https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js', () => {
+        InstantiateCarousel();
+
+        htmx.onLoad(() => {
+            if (document.getElementById('carousel-example')) {
+                InstantiateCarousel();
+            }
+        });
+    });
+});
+
