@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'markdownx',
     'tailwind',
     'theme',
-    'django_browser_reload',
     'Events.apps.EventsConfig',
     'Contact.apps.ContactConfig',
     'About.apps.AboutConfig',
@@ -73,8 +72,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
-
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

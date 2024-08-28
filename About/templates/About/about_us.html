@@ -1,32 +1,25 @@
-{% extends 'UserInterface/base.html' %}
-{% block head %}
+{% extends 'About/base/base.html' %} {% block head %}
 
 <style>
   .spacer-50 {
     height: 50vh;
   }
-  .card-img{
+  .card-img {
     max-height: 50vh;
-
   }
-
-
- 
 </style>
 
 <!-- The only reason I'm using inline styling is because I'm too lazy to learn how to handle static files in django. -->
 
-{% endblock head %} 
-
-{% block content %}
+{% endblock head %} {% block content %}
 <style>
-
-  a{
+  a {
     color: black !important;
   }
 </style>
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center"
-> 
+<div
+  class="d-flex flex-column min-vh-100 justify-content-center align-items-center"
+>
   <div class="align-items-center">
     <div class="col-md-12 mb-2">
       <h1 class="font-monospace">The Dominican Code</h1>
@@ -49,156 +42,127 @@
 </div>
 
 <div class="spacer-50">
-  <div
-    class="d-flex flex-column  justify-content-center align-items-center"
-  >
+  <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="align-items-center">
-
       <div class="col-md-12 mb-2 mt-5 mt-3">
-
         {% for member in members %}
-        <div class="card mx-auto mt-5 pt-5 border-0 " style="width: 20rem;">
-            <img src="{{member.image_link}}" class="rounded-circle card-img img-fluid" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{member.first_name}} {{member.last_name}}</h5>
-             
-                <h6 class="card-title">{{role |get_item:member.role}}</h6>
-             
-               
-                <p class="card-text">{{member.description}}</p>
+        <div class="card mx-auto mt-5 pt-5 border-0" style="width: 20rem">
+          <img
+            src="{{member.image_link}}"
+            class="rounded-circle card-img img-fluid"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+              {{member.first_name}} {{member.last_name}}
+            </h5>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                </svg><a href="{{member.facebook_link}}"  class="btn btn-transparent social-media"> {{member.username}}</a>
-                
-                
-              </div>
-            </div>
-        
+            <h6 class="card-title">{{role |get_item:member.role}}</h6>
+
+            <p class="card-text">{{member.description}}</p>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-facebook"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+              /></svg
+            ><a
+              href="{{member.facebook_link}}"
+              class="btn btn-transparent social-media"
+            >
+              {{member.username}}</a
+            >
+          </div>
+        </div>
+
         {% endfor %}
-
-     
-
-    
-        
-
-       
-
       </div>
     </div>
   </div>
 </div>
 
-
-{% endblock content %}
-
-
-{% block script %}
+{% endblock content %} {% block script %}
 <script>
-
   function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
 
-var mouseCard = false
+  var mouseCard = false
 
+  // set timer-variable
+  var timer = null
 
-// set timer-variable
-var timer = null;
+  function waitFunction() {
+    console.log("I want to see this 1 second after the LAST click")
+  }
 
+  let list_card = document.querySelectorAll(".card")
 
-    
-
-
-function waitFunction () {
-
-    console.log ('I want to see this 1 second after the LAST click');
-    
-}
-
-
-
-let list_card = document.querySelectorAll('.card')
-
-list_card.forEach(card => {
-  card.addEventListener('mouseenter', function(){
+  list_card.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
       mouseCard = true
       if (timer) {
-    
-        clearTimeout (timer);
-        timer = null;
-    
+        clearTimeout(timer)
+        timer = null
+      }
+
+      //set new timeout
+      timer = setTimeout(function () {
+        //call wait-function and clear timeout
+        setBackgroundIn("black", "white")
+        clearTimeout(timer)
+        timer = null
+      }, 3000)
+    })
+
+    card.addEventListener("mouseleave", async function () {
+      mouseCard = false
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
+
+      //set new timeout
+      timer = setTimeout(function () {
+        //call wait-function and clear timeout
+        setBackgroundOut("white", "black")
+        clearTimeout(timer)
+        timer = null
+      }, 15000)
+    })
+  })
+
+  function setBackgroundOut(bg, color) {
+    if (mouseCard === false) {
+      document.body.style.background = bg
+      document.body.style.color = color
+      document.body.style.transition = "1s all"
+      list_card.forEach((card) => {
+        card.style.background = bg
+        card.style.color = color
+        card.style.transition = "0.8s all"
+      })
     }
-    
-    //set new timeout
-    timer = setTimeout (function () {
-    
-            //call wait-function and clear timeout
-            setBackgroundIn ('black', 'white');
-            clearTimeout (timer);
-            timer = null;
-            
-    }, 3000);
-  })
-
-  card.addEventListener('mouseleave', async function(){
-    mouseCard = false 
-    if (timer) {
-    
-      clearTimeout (timer);
-      timer = null;
-  
   }
-  
-  //set new timeout
-  timer = setTimeout (function () {
-  
-          //call wait-function and clear timeout
-          setBackgroundOut ('white', 'black');
-          clearTimeout (timer);
-          timer = null;
-          
-  }, 15000);
-  })
 
-})
-
-function setBackgroundOut(bg, color){
-  if (mouseCard === false){
-  document.body.style.background = bg
-  document.body.style.color = color
-  document.body.style.transition = '1s all'
-  list_card.forEach(card => {
-    card.style.background = bg
-    card.style.color = color
-    card.style.transition = '0.8s all'
-  })
-
-  
+  function setBackgroundIn(bg, color) {
+    if (mouseCard === true) {
+      document.body.style.background = bg
+      document.body.style.color = color
+      document.body.style.transition = "1s all"
+      list_card.forEach((card) => {
+        card.style.background = bg
+        card.style.color = color
+        card.style.transition = "0.8s all"
+      })
+    }
   }
-}
-
-
-function setBackgroundIn(bg, color){
-  if (mouseCard === true){
-  document.body.style.background = bg
-  document.body.style.color = color
-  document.body.style.transition = '1s all'
-  list_card.forEach(card => {
-    card.style.background = bg
-    card.style.color = color
-    card.style.transition = '0.8s all'
-  })
-
-  
-  }
-}
-
-
-
-
-
 </script>
-
 
 {% endblock script %}

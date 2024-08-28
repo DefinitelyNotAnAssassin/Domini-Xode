@@ -32,7 +32,7 @@ urlpatterns = [
     path('', include('UserAuthentication.urls')),
     path('markdownx/', include('markdownx.urls')),
     path('frame_maker/', include('FrameMaker.urls')),
-    path("__reload__/", include("django_browser_reload.urls")),
+
     
 
 ]
