@@ -1,5 +1,5 @@
 import subprocess
-import resource
+import psutil
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -7,10 +7,9 @@ import json
 import tempfile
 import os
 
-
-
 def code_editor(request):
     return render(request, 'CodeEditor/editor.html')
+
 @csrf_exempt
 def run_code(request):
     if request.method == 'POST':
@@ -33,12 +32,11 @@ def run_code(request):
             temp_code_file_path = temp_code_file.name
         
         def set_limits():
-            # Set CPU time limit (seconds)
-            resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
-            # Set memory limit (bytes)
-            resource.setrlimit(resource.RLIMIT_AS, (50 * 1024 * 1024, 50 * 1024 * 1024))
-            # Set file size limit (bytes)
-            resource.setrlimit(resource.RLIMIT_FSIZE, (1024 * 1024, 1024 * 1024))
+            # Set CPU and memory limits using psutil
+            p = psutil.Process(os.getpid())
+            p.cpu_affinity([0])  # Bind process to CPU 0
+            p.rlimit(psutil.RLIMIT_CPU, (5, 5))  # 5 seconds of CPU time
+            p.rlimit(psutil.RLIMIT_AS, (50 * 1024 * 1024, 50 * 1024 * 1024))  # 50 MB of memory
 
         def stream_response():
             try:
