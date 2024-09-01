@@ -1,0 +1,128 @@
+{% extends 'CodeEditor/base/base.html' %}
+<!-- -->
+{% block title %}Code Editor{% endblock %}
+
+<!-- -->
+{% block content %}
+<div class="min-h-screen w-full bg-gray-900 text-white">
+  <select
+    id="language-select"
+    class="mb-4 mt-24 p-2 border rounded bg-gray-800 text-white"
+  >
+    <option value="python">Python</option>
+    <option value="cpp">C++</option>
+    <option value="java">Java</option>
+  </select>
+  <textarea id="code-editor" name="code"></textarea>
+  <button id="run-code" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+    Run Code
+  </button>
+  <pre id="output" class="mt-4 p-4 bg-gray-800 text-white"></pre>
+  <div id="input-container" class="mt-4 p-4 bg-gray-800 text-white hidden">
+    <label for="user-input">Input:</label>
+    <input
+      type="text"
+      id="user-input"
+      class="bg-gray-700 text-white p-2 rounded"
+    />
+    <button id="submit-input" class="px-4 py-2 bg-blue-500 text-white rounded">
+      Submit
+    </button>
+  </div>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/dracula.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+<script>
+  const editor = CodeMirror.fromTextArea(
+    document.getElementById("code-editor"),
+    {
+      lineNumbers: true,
+      mode: "python",
+      theme: "dracula",
+    }
+  )
+
+  document
+    .getElementById("language-select")
+    .addEventListener("change", (event) => {
+      const language = event.target.value
+      let mode = "python"
+      if (language === "cpp") {
+        mode = "text/x-c++src"
+      } else if (language === "java") {
+        mode = "text/x-java"
+      }
+      editor.setOption("mode", mode)
+    })
+
+  function runCode(userInput = "") {
+    const code = editor.getValue()
+    const language = document.getElementById("language-select").value
+
+    fetch("{% url 'run_code' %}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+      body: JSON.stringify({
+        code: code,
+        language: language,
+        user_input: userInput,
+      }),
+    }).then((response) => {
+      const reader = response.body.getReader()
+      const decoder = new TextDecoder()
+      let output = ""
+
+      console.log("Running code...")
+
+      function read() {
+        reader.read().then(({ done, value }) => {
+          if (done) {
+            return
+          }
+          const text = decoder.decode(value)
+          const lines = text.split("\n\n")
+          lines.forEach((line) => {
+            if (line.trim()) {
+              const data = line.replace("data: ", "")
+              output += data
+              document.getElementById("output").textContent = output
+              if (data.input_required) {
+                document
+                  .getElementById("input-container")
+                  .classList.remove("hidden")
+              }
+            }
+          })
+          read()
+        })
+      }
+      read()
+    })
+  }
+
+  document.getElementById("run-code").addEventListener("click", () => {
+    document.getElementById("output").textContent = ""
+    document.getElementById("input-container").classList.add("hidden")
+    runCode()
+  })
+
+  document.getElementById("submit-input").addEventListener("click", () => {
+    const userInput = document.getElementById("user-input").value
+    document.getElementById("input-container").classList.add("hidden")
+    runCode(userInput)
+  })
+</script>
+{% endblock content %}

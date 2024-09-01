@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'Events.apps.EventsConfig',
+    'CodeEditor.apps.CodeeditorConfig',
     'Contact.apps.ContactConfig',
     'About.apps.AboutConfig',
     'Articles.apps.ArticlesConfig',
@@ -66,7 +67,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

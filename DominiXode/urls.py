@@ -32,6 +32,7 @@ urlpatterns = [
     path('', include('UserAuthentication.urls')),
     path('markdownx/', include('markdownx.urls')),
     path('frame_maker/', include('FrameMaker.urls')),
+    path('code_editor/', include('CodeEditor.urls')),
 
     
 
