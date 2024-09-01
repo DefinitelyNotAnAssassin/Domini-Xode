@@ -1,15 +1,21 @@
-import subprocess
-import psutil
+
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+import subprocess
+import psutil
 import json
 import tempfile
 import os
 
+
+@login_required
 def code_editor(request):
     return render(request, 'CodeEditor/editor.html')
 
+
+@login_required 
 @csrf_exempt
 def run_code(request):
     if request.method == 'POST':
