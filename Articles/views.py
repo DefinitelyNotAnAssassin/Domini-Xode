@@ -38,6 +38,7 @@ def articles(request):
     if get_referer(request):
         return render(request, 'Articles/partition/articles.html', context=context)
     else:
+        print("Not partition")
         return render(request, 'Articles/articles.html', context=context)
 
 def view_article(request, id):

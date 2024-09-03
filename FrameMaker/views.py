@@ -15,6 +15,10 @@ def frame_maker(request):
     """
     
     if get_referer(request):
+        # variable, data_type, if statements, loop
+        # OOP 
+        
+        
         return render(request, 'FrameMaker/partition/frame_maker.html')
     
     else:
