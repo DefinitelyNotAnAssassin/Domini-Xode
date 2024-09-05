@@ -1,67 +1,81 @@
- {% block content %}
+{% block content %} {% load static %}
 
-{% load static %}
-
-<style> 
- nav a{ 
-    color: black !important; 
- }
-  #hero
-  {
+<style>
+  nav a {
     color: black !important;
   }
-  .hamburger-icon{ 
-    fill: black; 
+  #hero {
+    color: black !important;
+  }
+  .hamburger-icon {
+    fill: black;
     stroke: black;
   }
-
 </style>
-<div class="h-screen w-full flex flex-col  items-center justify-center">
 
-
+<div class="h-screen w-full flex flex-col items-center justify-center">
   <div class="h-3/4 w-full flex justify-center flex-wrap gap-4">
     {% for announcement in announcements %}
-       
-
-    <div class="max-w-sm min-w-1/3 bg-white border border-gray-200 rounded-lg shadow">
-      <a href="#">
-       
-
+    <div
+      class="w-[320px] bg-white border border-gray-200 rounded-lg shadow flex flex-col"
+    >
+      <div class="w-full flex items-center justify-center">
         {% if announcement.thumbnail %}
-          <img class="rounded-t-lg h-80 w-full object-fit" src="{{announcement.thumbnail.url}}" alt="" />
-
-          {% else %} 
-
-          <img class="rounded-t-lg h-80 w-full object-fit" src="/domini_xode_logo.jpg" alt="" />
+        <img
+          class="rounded-t-lg h-80 w-80 object-cover"
+          src="{{announcement.thumbnail.url}}"
+          alt="Article Image"
+          height="320"
+          width="320"
+        />
+        {% else %}
+        <img
+          class="rounded-t-lg object-cover"
+          src="/domini_xode_logo.jpg"
+          alt="Domini Xode Logo"
+          height="320"
+          width="320"
+        />
         {% endif %}
-
-
-
-      </a>
-      <div class="p-5">
+      </div>
+      <div class="p-5 flex-grow">
         <a href="#">
-          <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">{{announcement.title}}</h5>
-
-
-         
+          <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
+            {{announcement.title}}
+          </h5>
         </a>
-        <p class="mb-3 font-normal text-gray-700">{{announcement.description | truncatewords:16}}</p>
-        <a href="{% url 'view article' announcement.id %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-          Read more
-           <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        <p class="mb-3 font-normal text-gray-700">
+          {{announcement.description | truncatewords:16}}
+        </p>
+      </div>
+      <div class="p-5 flex justify-center mb-4">
+        <a
+          href="{% url 'view article' announcement.id %}"
+          class="inline-flex items-center px-3 py-2 w-3/4 md:w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          Read Article
+          <svg
+            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
           </svg>
         </a>
       </div>
     </div>
-
-    
-      {% endfor %}
+    {% endfor %}
   </div>
- 
 </div>
 
-  <div class="h-screen w-full"></div>
+<div class="h-screen w-full"></div>
 
-  {% endblock %}
-</div>
+{% endblock %}

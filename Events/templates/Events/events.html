@@ -1,73 +1,85 @@
-{% extends 'Events/base/base.html' %} 
+{% extends 'Events/base/base.html' %}
 
+<!-- Title Block -->
+{% block title %}Domini Xode - Events{% endblock %}
 
-{% block title %} Domini Xode - Events {% endblock title %} 
-{% block content %}
+<!-- -->
+{% block content %} {% load static %} {% load custom_filter %}
 
-{% load custom_filter %}
-
-<style> 
-  nav a { 
+<style>
+  nav a {
     color: black !important;
   }
-  #hero
-  {
+  #hero {
     color: black !important;
   }
- 
-  .hamburger-icon{ 
-    fill: black; 
+  .hamburger-icon {
+    fill: black;
     stroke: black;
   }
-
 </style>
 
-<div class="h-screen w-full flex flex-col items-center justify-center ">
-
-  <h1 class="text-4xl mb-16">Domini Xode Events</h1>
-
-  <div class="h-1/2 w-full flex justify-center flex-wrap gap-4">
+<div class="h-screen w-full flex flex-col items-center justify-center">
+  <div class="h-3/4 w-full flex justify-center flex-wrap gap-4">
     {% for event in events %}
-       
-
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg">
-      <div>
-        {% if event.flyer %} 
+    <div
+      class="w-80 bg-white border border-gray-200 rounded-lg shadow flex flex-col"
+    >
+      <div class="w-full flex items-center justify-center">
+        {% if event.flyer %}
 
         <img class="rounded-t-lg" src="{{event.flyer.url}}" alt="" />
 
-        {% else %} 
+        {% else %}
 
         <img class="rounded-t-lg" src="/media/domini_xode_logo.jpg" alt="" />
 
         {% endif %}
-
       </div>
-      <div class="p-5 flex flex-col gap-8">
+      <div class="p-5 flex-grow">
+        <h5
+          class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 text-center"
+        >
+          {{event.event_name}}
+        </h5>
+
+        <h1 class="text-center font-semibold">
+          Start: {{event.event_start_date}}
+        </h1>
+        <h1 class="text-center font-semibold">End: {{event.event_end_date}}</h1>
+
         <div>
-          <h1 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 text-center">{{event.event_name}}</h1>
-
-
-          <h2 class="text-center">Start: {{event.event_start_date}}</h2>
-          <h2 class="text-center">End: {{event.event_end_date}}</h2>
+          <!-- Check if the status is ongoing, done, or upcoming using the event.event_start_date and end_date-->
+          <div class="text-center mt-4">
+            {% if event|date_status == 'Ongoing' %}
+            <span
+              class="inline-block px-4 py-1 bg-green-500 text-white font-semibold rounded-full"
+              >Ongoing</span
+            >
+            {% elif event|date_status == 'Done' %}
+            <span
+              class="inline-block px-4 py-1 bg-gray-500 text-white font-semibold rounded-full"
+              >Done</span
+            >
+            {% else %}
+            <span
+              class="inline-block px-4 py-1 bg-blue-500 text-white font-semibold rounded-full"
+              >Upcoming</span
+            >
+            {% endif %}
+          </div>
         </div>
-        <p class="mb-3 font-normal text-gray-700 text-center h-12">{{event.event_description | truncatewords:16}}</p>
-        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-          Read more
-           <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-          </svg>
-        </a>
+
+        <p class="mt-6 mb-3 font-normal text-gray-700 text-center">
+          {{event.event_description | truncatewords:16}}
+        </p>
       </div>
+      <div class="p-5 flex justify-center mb-4"></div>
     </div>
-
-    
-      {% endfor %}
+    {% endfor %}
   </div>
- 
 </div>
 
-  <div class="h-screen w-full"></div>
+<div class="h-screen w-full"></div>
 
-  {% endblock %}
-</div>
+{% endblock %}

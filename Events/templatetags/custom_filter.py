@@ -17,14 +17,4 @@ def date_status(date):
         return "Done"
     
 
-@register.filter 
-def event_status(date):
-    if timezone.now() < date.event_start_date:
-        return "secondary"
-    elif timezone.now() < date.event_start_date and timezone.now() > date.event_end_date:
-        return "success"
-
-
-    else:
-        return "dark"
     
