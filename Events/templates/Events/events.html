@@ -28,11 +28,23 @@
       <div class="w-full flex items-center justify-center">
         {% if event.flyer %}
 
-        <img class="rounded-t-lg" src="{{event.flyer.url}}" alt="" />
+        <img
+          class="rounded-t-lg"
+          height="320"
+          width="320"
+          src="{{event.flyer.url}}"
+          alt=""
+        />
 
         {% else %}
 
-        <img class="rounded-t-lg" src="/media/domini_xode_logo.jpg" alt="" />
+        <img
+          class="rounded-t-lg"
+          height="320"
+          width="320"
+          src="/media/domini_xode_logo.jpg"
+          alt=""
+        />
 
         {% endif %}
       </div>
