@@ -1,28 +1,51 @@
-from django.shortcuts import render, HttpResponse
-import json
-from django.http import StreamingHttpResponse
-import openai
-from markdownx.utils import markdownify
-import environ
-env = environ.Env()
-openai.api_key = env('API_KEY')
+from django.shortcuts import render, HttpResponse 
+from django.http import JsonResponse 
+from Models.models import Announcements, Events
 
 
-
-def codeit(request):
-    arg = request.GET.get('msg', '')
-    print(arg)
-    complete_message = []
-    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=[
-    {"role": "user", "content": f"Answer strictly in markdown syntax:{arg}"},],max_tokens = 1000, temperature = 0.2, stream = True)
-    for chunk in completion:
-        try:
-            complete_message.append(chunk['choices'][0]['delta']['content'])
-        except KeyError:
-            pass
-
+def getArticles(request): 
+    announcements = Announcements.objects.all().values()
+    data = [] 
     
-    complete_message = ''.join(complete_message)
-    complete_message = markdownify(complete_message)
     
-    return HttpResponse(json.dumps(complete_message))
+    for announcement in announcements: 
+
+
+        data.append({ 
+            'title': announcement['title'], 
+            'description': announcement['description'], 
+            'date': announcement['date'], 
+            'id': announcement['id'], 
+        })
+        
+    return JsonResponse(data, safe = False) 
+
+def getArticle(request): 
+    id = request.GET.get('id') 
+    announcement = Announcements.objects.get(id = id) 
+    data = { 
+        'title': announcement.title, 
+        'description': announcement.description, 
+        'content': announcement.content, 
+        'date': announcement.date, 
+        'id': announcement.id, 
+    }
+    
+    return JsonResponse(data, safe = False)
+
+def getEvents(request):
+    events = Events.objects.all().values()
+    data = []
+    
+    for event in events:
+        data.append({
+          
+        'title': event['event_name'],
+        'description': event['event_description'],
+        'image': event['event_flyer'],
+        'location': event['event_location'],
+        'startDate': event['event_start_date'],
+        'endDate': event['event_end_date'],
+        })
+        
+    return JsonResponse(data, safe = False)

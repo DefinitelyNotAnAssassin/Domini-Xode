@@ -3,5 +3,8 @@ from API import views
 
 
 urlpatterns = [
-    path('codeit', views.codeit, name = 'code it')
+    path('getArticles', views.getArticles), 
+    path('getArticle', views.getArticle),
+    path('getEvents', views.getEvents), 
+    
 ]

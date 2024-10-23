@@ -25,11 +25,17 @@ def articles(request):
         HttpResponse: Rendered articles page.
     """
     
+    try:
+        q = Announcements.objects.all().order_by('-date')
     
-    q = Announcements.objects.all().order_by('-date')
+    except Exception: 
+        return redirect('index')
     
     
-    
+
+        
+        
+        
 
     context = {
             'announcements': q
