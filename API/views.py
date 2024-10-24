@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse 
 from django.http import JsonResponse 
 from Models.models import Announcements, Events
+from markdownx.utils import markdownify
 
 
 def getArticles(request): 
@@ -22,16 +23,19 @@ def getArticles(request):
 
 def getArticle(request): 
     id = request.GET.get('id') 
-    announcement = Announcements.objects.get(id = id) 
+    announcement = Announcements.objects.filter(id = id).first()
+    print(announcement)
     data = { 
         'title': announcement.title, 
         'description': announcement.description, 
-        'content': announcement.content, 
+        'content': markdownify(announcement.content),
         'date': announcement.date, 
-        'id': announcement.id, 
+        'author': announcement.author.first_name + ' ' + announcement.author.last_name, 
     }
+
     
     return JsonResponse(data, safe = False)
+
 
 def getEvents(request):
     events = Events.objects.all().values()
@@ -49,3 +53,4 @@ def getEvents(request):
         })
         
     return JsonResponse(data, safe = False)
+
